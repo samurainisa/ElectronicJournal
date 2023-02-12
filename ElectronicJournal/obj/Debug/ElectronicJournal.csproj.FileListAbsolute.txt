@@ -79,3 +79,8 @@ C:\Users\Nik\source\repos\ElectronicJournal\ElectronicJournal\bin\Debug\pt-BR\Mi
 C:\Users\Nik\source\repos\ElectronicJournal\ElectronicJournal\bin\Debug\ru\Microsoft.Data.SqlClient.resources.dll
 C:\Users\Nik\source\repos\ElectronicJournal\ElectronicJournal\bin\Debug\zh-Hans\Microsoft.Data.SqlClient.resources.dll
 C:\Users\Nik\source\repos\ElectronicJournal\ElectronicJournal\bin\Debug\zh-Hant\Microsoft.Data.SqlClient.resources.dll
+C:\Users\Nik\source\repos\ElectronicJournal\ElectronicJournal\bin\Debug\EntityFramework.dll
+C:\Users\Nik\source\repos\ElectronicJournal\ElectronicJournal\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Nik\source\repos\ElectronicJournal\ElectronicJournal\bin\Debug\EntityFramework.xml
+C:\Users\Nik\source\repos\ElectronicJournal\ElectronicJournal\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Nik\source\repos\ElectronicJournal\ElectronicJournal\obj\Debug\ElectronicJournal.Формы.MainForm.resources

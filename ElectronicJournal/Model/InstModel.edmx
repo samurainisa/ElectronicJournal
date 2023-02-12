@@ -1,0 +1,520 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище InstDBModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="addresses">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="address" Type="nvarchar" MaxLength="1000" Nullable="false" />
+          <Property Name="employee_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="employee_training">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="employee_id" Type="int" Nullable="false" />
+          <Property Name="training_id" Type="int" Nullable="false" />
+          <Property Name="completion_date" Type="date" Nullable="false" />
+          <Property Name="employee_code" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="employee_violation">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="employee_id" Type="int" Nullable="false" />
+          <Property Name="violation_id" Type="int" Nullable="false" />
+          <Property Name="violation_date" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="employees">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="position" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="trainings">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="description" Type="nvarchar" MaxLength="1000" Nullable="false" />
+        </EntityType>
+        <EntityType Name="USERS">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="username" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="password" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="access_level" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="violation_resolution">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="violation_id" Type="int" Nullable="false" />
+          <Property Name="resolution" Type="nvarchar" MaxLength="1000" Nullable="false" />
+          <Property Name="resolution_date" Type="date" Nullable="false" />
+          <Property Name="employee_code" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="violations">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="description" Type="nvarchar" MaxLength="1000" Nullable="false" />
+          <Property Name="control_level" Type="int" Nullable="false" />
+          <Property Name="due_date" Type="date" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__addresses__emplo__398D8EEE">
+          <End Role="employees" Type="Self.employees" Multiplicity="1" />
+          <End Role="addresses" Type="Self.addresses" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="employees">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="addresses">
+              <PropertyRef Name="employee_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__employee___emplo__3E52440B">
+          <End Role="employees" Type="Self.employees" Multiplicity="1" />
+          <End Role="employee_training" Type="Self.employee_training" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="employees">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="employee_training">
+              <PropertyRef Name="employee_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__employee___emplo__440B1D61">
+          <End Role="employees" Type="Self.employees" Multiplicity="1" />
+          <End Role="employee_violation" Type="Self.employee_violation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="employees">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="employee_violation">
+              <PropertyRef Name="employee_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__employee___train__3F466844">
+          <End Role="trainings" Type="Self.trainings" Multiplicity="1" />
+          <End Role="employee_training" Type="Self.employee_training" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="trainings">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="employee_training">
+              <PropertyRef Name="training_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__employee___viola__44FF419A">
+          <End Role="violations" Type="Self.violations" Multiplicity="1" />
+          <End Role="employee_violation" Type="Self.employee_violation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="violations">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="employee_violation">
+              <PropertyRef Name="violation_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__violation__viola__47DBAE45">
+          <End Role="violations" Type="Self.violations" Multiplicity="1" />
+          <End Role="violation_resolution" Type="Self.violation_resolution" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="violations">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="violation_resolution">
+              <PropertyRef Name="violation_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище InstDBModelContainer">
+          <EntitySet Name="addresses" EntityType="Self.addresses" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="employee_training" EntityType="Self.employee_training" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="employee_violation" EntityType="Self.employee_violation" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="employees" EntityType="Self.employees" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="trainings" EntityType="Self.trainings" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="USERS" EntityType="Self.USERS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="violation_resolution" EntityType="Self.violation_resolution" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="violations" EntityType="Self.violations" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__addresses__emplo__398D8EEE" Association="Self.FK__addresses__emplo__398D8EEE">
+            <End Role="employees" EntitySet="employees" />
+            <End Role="addresses" EntitySet="addresses" />
+          </AssociationSet>
+          <AssociationSet Name="FK__employee___emplo__3E52440B" Association="Self.FK__employee___emplo__3E52440B">
+            <End Role="employees" EntitySet="employees" />
+            <End Role="employee_training" EntitySet="employee_training" />
+          </AssociationSet>
+          <AssociationSet Name="FK__employee___emplo__440B1D61" Association="Self.FK__employee___emplo__440B1D61">
+            <End Role="employees" EntitySet="employees" />
+            <End Role="employee_violation" EntitySet="employee_violation" />
+          </AssociationSet>
+          <AssociationSet Name="FK__employee___train__3F466844" Association="Self.FK__employee___train__3F466844">
+            <End Role="trainings" EntitySet="trainings" />
+            <End Role="employee_training" EntitySet="employee_training" />
+          </AssociationSet>
+          <AssociationSet Name="FK__employee___viola__44FF419A" Association="Self.FK__employee___viola__44FF419A">
+            <End Role="violations" EntitySet="violations" />
+            <End Role="employee_violation" EntitySet="employee_violation" />
+          </AssociationSet>
+          <AssociationSet Name="FK__violation__viola__47DBAE45" Association="Self.FK__violation__viola__47DBAE45">
+            <End Role="violations" EntitySet="violations" />
+            <End Role="violation_resolution" EntitySet="violation_resolution" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="InstDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="addresses">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="address" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="employee_id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="employees" Relationship="Self.FK__addresses__emplo__398D8EEE" FromRole="addresses" ToRole="employees" />
+        </EntityType>
+        <EntityType Name="employee_training">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="employee_id" Type="Int32" Nullable="false" />
+          <Property Name="training_id" Type="Int32" Nullable="false" />
+          <Property Name="completion_date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="employee_code" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="employees" Relationship="Self.FK__employee___emplo__3E52440B" FromRole="employee_training" ToRole="employees" />
+          <NavigationProperty Name="trainings" Relationship="Self.FK__employee___train__3F466844" FromRole="employee_training" ToRole="trainings" />
+        </EntityType>
+        <EntityType Name="employee_violation">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="employee_id" Type="Int32" Nullable="false" />
+          <Property Name="violation_id" Type="Int32" Nullable="false" />
+          <Property Name="violation_date" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="employees" Relationship="Self.FK__employee___emplo__440B1D61" FromRole="employee_violation" ToRole="employees" />
+          <NavigationProperty Name="violations" Relationship="Self.FK__employee___viola__44FF419A" FromRole="employee_violation" ToRole="violations" />
+        </EntityType>
+        <EntityType Name="employees">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="position" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="addresses" Relationship="Self.FK__addresses__emplo__398D8EEE" FromRole="employees" ToRole="addresses" />
+          <NavigationProperty Name="employee_training" Relationship="Self.FK__employee___emplo__3E52440B" FromRole="employees" ToRole="employee_training" />
+          <NavigationProperty Name="employee_violation" Relationship="Self.FK__employee___emplo__440B1D61" FromRole="employees" ToRole="employee_violation" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="trainings">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="description" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="employee_training" Relationship="Self.FK__employee___train__3F466844" FromRole="trainings" ToRole="employee_training" />
+        </EntityType>
+        <EntityType Name="USERS">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="password" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="access_level" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="violation_resolution">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="violation_id" Type="Int32" Nullable="false" />
+          <Property Name="resolution" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="resolution_date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="employee_code" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="violations" Relationship="Self.FK__violation__viola__47DBAE45" FromRole="violation_resolution" ToRole="violations" />
+        </EntityType>
+        <EntityType Name="violations">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="description" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="control_level" Type="Int32" Nullable="false" />
+          <Property Name="due_date" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="employee_violation" Relationship="Self.FK__employee___viola__44FF419A" FromRole="violations" ToRole="employee_violation" />
+          <NavigationProperty Name="violation_resolution" Relationship="Self.FK__violation__viola__47DBAE45" FromRole="violations" ToRole="violation_resolution" />
+        </EntityType>
+        <Association Name="FK__addresses__emplo__398D8EEE">
+          <End Role="employees" Type="Self.employees" Multiplicity="1" />
+          <End Role="addresses" Type="Self.addresses" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="employees">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="addresses">
+              <PropertyRef Name="employee_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__employee___emplo__3E52440B">
+          <End Role="employees" Type="Self.employees" Multiplicity="1" />
+          <End Role="employee_training" Type="Self.employee_training" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="employees">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="employee_training">
+              <PropertyRef Name="employee_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__employee___train__3F466844">
+          <End Role="trainings" Type="Self.trainings" Multiplicity="1" />
+          <End Role="employee_training" Type="Self.employee_training" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="trainings">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="employee_training">
+              <PropertyRef Name="training_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__employee___emplo__440B1D61">
+          <End Role="employees" Type="Self.employees" Multiplicity="1" />
+          <End Role="employee_violation" Type="Self.employee_violation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="employees">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="employee_violation">
+              <PropertyRef Name="employee_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__employee___viola__44FF419A">
+          <End Role="violations" Type="Self.violations" Multiplicity="1" />
+          <End Role="employee_violation" Type="Self.employee_violation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="violations">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="employee_violation">
+              <PropertyRef Name="violation_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__violation__viola__47DBAE45">
+          <End Role="violations" Type="Self.violations" Multiplicity="1" />
+          <End Role="violation_resolution" Type="Self.violation_resolution" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="violations">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="violation_resolution">
+              <PropertyRef Name="violation_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="InstDBEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="addresses" EntityType="Self.addresses" />
+          <EntitySet Name="employee_training" EntityType="Self.employee_training" />
+          <EntitySet Name="employee_violation" EntityType="Self.employee_violation" />
+          <EntitySet Name="employees" EntityType="Self.employees" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="trainings" EntityType="Self.trainings" />
+          <EntitySet Name="USERS" EntityType="Self.USERS" />
+          <EntitySet Name="violation_resolution" EntityType="Self.violation_resolution" />
+          <EntitySet Name="violations" EntityType="Self.violations" />
+          <AssociationSet Name="FK__addresses__emplo__398D8EEE" Association="Self.FK__addresses__emplo__398D8EEE">
+            <End Role="employees" EntitySet="employees" />
+            <End Role="addresses" EntitySet="addresses" />
+          </AssociationSet>
+          <AssociationSet Name="FK__employee___emplo__3E52440B" Association="Self.FK__employee___emplo__3E52440B">
+            <End Role="employees" EntitySet="employees" />
+            <End Role="employee_training" EntitySet="employee_training" />
+          </AssociationSet>
+          <AssociationSet Name="FK__employee___train__3F466844" Association="Self.FK__employee___train__3F466844">
+            <End Role="trainings" EntitySet="trainings" />
+            <End Role="employee_training" EntitySet="employee_training" />
+          </AssociationSet>
+          <AssociationSet Name="FK__employee___emplo__440B1D61" Association="Self.FK__employee___emplo__440B1D61">
+            <End Role="employees" EntitySet="employees" />
+            <End Role="employee_violation" EntitySet="employee_violation" />
+          </AssociationSet>
+          <AssociationSet Name="FK__employee___viola__44FF419A" Association="Self.FK__employee___viola__44FF419A">
+            <End Role="violations" EntitySet="violations" />
+            <End Role="employee_violation" EntitySet="employee_violation" />
+          </AssociationSet>
+          <AssociationSet Name="FK__violation__viola__47DBAE45" Association="Self.FK__violation__viola__47DBAE45">
+            <End Role="violations" EntitySet="violations" />
+            <End Role="violation_resolution" EntitySet="violation_resolution" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище InstDBModelContainer" CdmEntityContainer="InstDBEntities1">
+          <EntitySetMapping Name="addresses">
+            <EntityTypeMapping TypeName="InstDBModel.addresses">
+              <MappingFragment StoreEntitySet="addresses">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="address" ColumnName="address" />
+                <ScalarProperty Name="employee_id" ColumnName="employee_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="employee_training">
+            <EntityTypeMapping TypeName="InstDBModel.employee_training">
+              <MappingFragment StoreEntitySet="employee_training">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="employee_id" ColumnName="employee_id" />
+                <ScalarProperty Name="training_id" ColumnName="training_id" />
+                <ScalarProperty Name="completion_date" ColumnName="completion_date" />
+                <ScalarProperty Name="employee_code" ColumnName="employee_code" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="employee_violation">
+            <EntityTypeMapping TypeName="InstDBModel.employee_violation">
+              <MappingFragment StoreEntitySet="employee_violation">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="employee_id" ColumnName="employee_id" />
+                <ScalarProperty Name="violation_id" ColumnName="violation_id" />
+                <ScalarProperty Name="violation_date" ColumnName="violation_date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="employees">
+            <EntityTypeMapping TypeName="InstDBModel.employees">
+              <MappingFragment StoreEntitySet="employees">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="position" ColumnName="position" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="InstDBModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="trainings">
+            <EntityTypeMapping TypeName="InstDBModel.trainings">
+              <MappingFragment StoreEntitySet="trainings">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="description" ColumnName="description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="USERS">
+            <EntityTypeMapping TypeName="InstDBModel.USERS">
+              <MappingFragment StoreEntitySet="USERS">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="access_level" ColumnName="access_level" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="violation_resolution">
+            <EntityTypeMapping TypeName="InstDBModel.violation_resolution">
+              <MappingFragment StoreEntitySet="violation_resolution">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="violation_id" ColumnName="violation_id" />
+                <ScalarProperty Name="resolution" ColumnName="resolution" />
+                <ScalarProperty Name="resolution_date" ColumnName="resolution_date" />
+                <ScalarProperty Name="employee_code" ColumnName="employee_code" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="violations">
+            <EntityTypeMapping TypeName="InstDBModel.violations">
+              <MappingFragment StoreEntitySet="violations">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="control_level" ColumnName="control_level" />
+                <ScalarProperty Name="due_date" ColumnName="due_date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
