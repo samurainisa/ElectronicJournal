@@ -19,7 +19,5 @@ namespace ElectronicJournal.Model
         public string resolution { get; set; }
         public System.DateTime resolution_date { get; set; }
         public int employee_code { get; set; }
-    
-        public virtual violations violations { get; set; }
     }
 }

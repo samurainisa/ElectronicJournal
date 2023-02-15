@@ -61,5 +61,12 @@ namespace ElectronicJournal.Формы
 
 
         }
+
+        private void label4_Click(object sender, EventArgs e)
+        {
+            AuthForm authform = new AuthForm();
+            authform.Show();
+            this.Hide();
+        }
     }
 }

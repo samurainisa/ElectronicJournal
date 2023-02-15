@@ -14,17 +14,8 @@ namespace ElectronicJournal.Model
     
     public partial class trainings
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public trainings()
-        {
-            this.employee_training = new HashSet<employee_training>();
-        }
-    
         public int id { get; set; }
         public string name { get; set; }
         public string description { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<employee_training> employee_training { get; set; }
     }
 }

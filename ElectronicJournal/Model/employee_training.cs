@@ -19,8 +19,5 @@ namespace ElectronicJournal.Model
         public int training_id { get; set; }
         public System.DateTime completion_date { get; set; }
         public int employee_code { get; set; }
-    
-        public virtual employees employees { get; set; }
-        public virtual trainings trainings { get; set; }
     }
 }

@@ -84,3 +84,14 @@ C:\Users\Nik\source\repos\ElectronicJournal\ElectronicJournal\bin\Debug\EntityFr
 C:\Users\Nik\source\repos\ElectronicJournal\ElectronicJournal\bin\Debug\EntityFramework.xml
 C:\Users\Nik\source\repos\ElectronicJournal\ElectronicJournal\bin\Debug\EntityFramework.SqlServer.xml
 C:\Users\Nik\source\repos\ElectronicJournal\ElectronicJournal\obj\Debug\ElectronicJournal.Формы.MainForm.resources
+C:\Users\Nik\source\repos\ElectronicJournal\ElectronicJournal\obj\Debug\ElectronicJournal.Формы.AuthForm.resources
+C:\Users\Nik\source\repos\ElectronicJournal\ElectronicJournal\obj\Debug\ElectronicJournal.Формы.ExcelTableConfirmForm.resources
+C:\Users\Nik\source\repos\ElectronicJournal\ElectronicJournal\bin\Debug\EPPlus.dll
+C:\Users\Nik\source\repos\ElectronicJournal\ElectronicJournal\bin\Debug\EPPlus.Interfaces.dll
+C:\Users\Nik\source\repos\ElectronicJournal\ElectronicJournal\bin\Debug\EPPlus.System.Drawing.dll
+C:\Users\Nik\source\repos\ElectronicJournal\ElectronicJournal\bin\Debug\Microsoft.IO.RecyclableMemoryStream.dll
+C:\Users\Nik\source\repos\ElectronicJournal\ElectronicJournal\bin\Debug\EPPlus.xml
+C:\Users\Nik\source\repos\ElectronicJournal\ElectronicJournal\bin\Debug\Microsoft.IO.RecyclableMemoryStream.xml
+C:\Users\Nik\source\repos\ElectronicJournal\ElectronicJournal\bin\Debug\ru\EntityFramework.resources.dll
+C:\Users\Nik\source\repos\ElectronicJournal\ElectronicJournal\bin\Debug\ru\EntityFramework.SqlServer.resources.dll
+C:\Users\Nik\source\repos\ElectronicJournal\ElectronicJournal\obj\Debug\ElectronicJournal.Формы.WordExportForm.resources

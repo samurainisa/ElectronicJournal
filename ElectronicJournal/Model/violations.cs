@@ -14,21 +14,9 @@ namespace ElectronicJournal.Model
     
     public partial class violations
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public violations()
-        {
-            this.employee_violation = new HashSet<employee_violation>();
-            this.violation_resolution = new HashSet<violation_resolution>();
-        }
-    
         public int id { get; set; }
         public string description { get; set; }
         public int control_level { get; set; }
         public System.DateTime due_date { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<employee_violation> employee_violation { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<violation_resolution> violation_resolution { get; set; }
     }
 }

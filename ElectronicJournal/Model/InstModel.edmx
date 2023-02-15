@@ -205,7 +205,6 @@
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="address" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="employee_id" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="employees" Relationship="Self.FK__addresses__emplo__398D8EEE" FromRole="addresses" ToRole="employees" />
         </EntityType>
         <EntityType Name="employee_training">
           <Key>
@@ -216,8 +215,6 @@
           <Property Name="training_id" Type="Int32" Nullable="false" />
           <Property Name="completion_date" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="employee_code" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="employees" Relationship="Self.FK__employee___emplo__3E52440B" FromRole="employee_training" ToRole="employees" />
-          <NavigationProperty Name="trainings" Relationship="Self.FK__employee___train__3F466844" FromRole="employee_training" ToRole="trainings" />
         </EntityType>
         <EntityType Name="employee_violation">
           <Key>
@@ -227,8 +224,6 @@
           <Property Name="employee_id" Type="Int32" Nullable="false" />
           <Property Name="violation_id" Type="Int32" Nullable="false" />
           <Property Name="violation_date" Type="DateTime" Nullable="false" Precision="0" />
-          <NavigationProperty Name="employees" Relationship="Self.FK__employee___emplo__440B1D61" FromRole="employee_violation" ToRole="employees" />
-          <NavigationProperty Name="violations" Relationship="Self.FK__employee___viola__44FF419A" FromRole="employee_violation" ToRole="violations" />
         </EntityType>
         <EntityType Name="employees">
           <Key>
@@ -237,19 +232,16 @@
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="position" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="addresses" Relationship="Self.FK__addresses__emplo__398D8EEE" FromRole="employees" ToRole="addresses" />
-          <NavigationProperty Name="employee_training" Relationship="Self.FK__employee___emplo__3E52440B" FromRole="employees" ToRole="employee_training" />
-          <NavigationProperty Name="employee_violation" Relationship="Self.FK__employee___emplo__440B1D61" FromRole="employees" ToRole="employee_violation" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
             <PropertyRef Name="diagram_id" />
           </Key>
-          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="principal_id" Type="Int32" Nullable="false" />
-          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" Type="String" />
+          <Property Name="principal_id" Nullable="false" Type="Int32" />
+          <Property Name="diagram_id" Nullable="false" annotation:StoreGeneratedPattern="Identity" Type="Int32" />
           <Property Name="version" Type="Int32" />
-          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="definition" MaxLength="Max" FixedLength="false" Type="Binary" />
         </EntityType>
         <EntityType Name="trainings">
           <Key>
@@ -258,7 +250,6 @@
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="description" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="employee_training" Relationship="Self.FK__employee___train__3F466844" FromRole="trainings" ToRole="employee_training" />
         </EntityType>
         <EntityType Name="USERS">
           <Key>
@@ -278,7 +269,6 @@
           <Property Name="resolution" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="resolution_date" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="employee_code" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="violations" Relationship="Self.FK__violation__viola__47DBAE45" FromRole="violation_resolution" ToRole="violations" />
         </EntityType>
         <EntityType Name="violations">
           <Key>
@@ -288,8 +278,6 @@
           <Property Name="description" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="control_level" Type="Int32" Nullable="false" />
           <Property Name="due_date" Type="DateTime" Nullable="false" Precision="0" />
-          <NavigationProperty Name="employee_violation" Relationship="Self.FK__employee___viola__44FF419A" FromRole="violations" ToRole="employee_violation" />
-          <NavigationProperty Name="violation_resolution" Relationship="Self.FK__violation__viola__47DBAE45" FromRole="violations" ToRole="violation_resolution" />
         </EntityType>
         <Association Name="FK__addresses__emplo__398D8EEE">
           <End Role="employees" Type="Self.employees" Multiplicity="1" />

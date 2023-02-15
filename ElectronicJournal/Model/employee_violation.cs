@@ -18,8 +18,5 @@ namespace ElectronicJournal.Model
         public int employee_id { get; set; }
         public int violation_id { get; set; }
         public System.DateTime violation_date { get; set; }
-    
-        public virtual employees employees { get; set; }
-        public virtual violations violations { get; set; }
     }
 }

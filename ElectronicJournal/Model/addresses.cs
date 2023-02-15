@@ -17,7 +17,5 @@ namespace ElectronicJournal.Model
         public int id { get; set; }
         public string address { get; set; }
         public int employee_id { get; set; }
-    
-        public virtual employees employees { get; set; }
     }
 }
