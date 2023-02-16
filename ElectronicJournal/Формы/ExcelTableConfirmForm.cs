@@ -11,7 +11,6 @@ namespace ElectronicJournal.Формы
 {
     public partial class ExcelTableConfirmForm : Form
     {
-        private DomainUpDown domainUpDown1;
         private Label label1;
         private Button button1;
         InstDBEntities1 db = new InstDBEntities1();
@@ -31,6 +30,7 @@ namespace ElectronicJournal.Формы
 
         private void ExcelTableConfirmForm_Load(object sender, EventArgs e)
         {
+            StartPosition = FormStartPosition.CenterScreen;
 
         }
     }

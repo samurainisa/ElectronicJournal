@@ -22,25 +22,10 @@
 
         private void InitializeComponent()
         {
-            this.domainUpDown1 = new System.Windows.Forms.DomainUpDown();
             this.label1 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
+            this.domainUpDown1 = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
-            // 
-            // domainUpDown1
-            // 
-            this.domainUpDown1.Items.Add("USERS");
-            this.domainUpDown1.Items.Add("violations");
-            this.domainUpDown1.Items.Add("violation_resolution");
-            this.domainUpDown1.Items.Add("employee_violation");
-            this.domainUpDown1.Items.Add("employees");
-            this.domainUpDown1.Items.Add("trainings");
-            this.domainUpDown1.Items.Add("addresses");
-            this.domainUpDown1.Items.Add("employee_trainin");
-            this.domainUpDown1.Location = new System.Drawing.Point(43, 80);
-            this.domainUpDown1.Name = "domainUpDown1";
-            this.domainUpDown1.Size = new System.Drawing.Size(240, 20);
-            this.domainUpDown1.TabIndex = 0;
             // 
             // label1
             // 
@@ -53,7 +38,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(85, 220);
+            this.button1.Location = new System.Drawing.Point(78, 157);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(159, 55);
             this.button1.TabIndex = 2;
@@ -61,16 +46,34 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // ExcelTableConfirmForm
+            // domainUpDown1
+            // 
+            this.domainUpDown1.FormattingEnabled = true;
+            this.domainUpDown1.Items.AddRange(new object[] {
+            "USERS",
+            "violations",
+            "violation_resolution",
+            "employee_violation",
+            "employees",
+            "trainings",
+            "addresses",
+            "employee_trainin"});
+            this.domainUpDown1.Location = new System.Drawing.Point(46, 86);
+            this.domainUpDown1.Name = "domainUpDown1";
+            this.domainUpDown1.Size = new System.Drawing.Size(237, 21);
+            this.domainUpDown1.TabIndex = 3;
+            // 
+            // WordExportForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(346, 295);
+            this.ClientSize = new System.Drawing.Size(323, 246);
+            this.Controls.Add(this.domainUpDown1);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.domainUpDown1);
-            this.Name = "ExcelTableConfirmForm";
-            this.Text = "ExcelTableConfirmForm";
+            this.Name = "WordExportForm";
+            this.Text = "Вывод в Word";
+            this.Load += new System.EventHandler(this.WordExportForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -78,6 +81,6 @@
 
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.DomainUpDown domainUpDown1;
+        private System.Windows.Forms.ComboBox domainUpDown1;
     }
 }

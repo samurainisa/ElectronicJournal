@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Windows.Forms;
 
 namespace ElectronicJournal.Формы
 {
@@ -30,6 +31,7 @@ namespace ElectronicJournal.Формы
         /// </summary>
         private void InitializeComponent()
         {
+            StartPosition = FormStartPosition.CenterScreen;
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -120,7 +122,7 @@ namespace ElectronicJournal.Формы
 
         private void RegistrationForm_Load(object sender, EventArgs e)
         {
-            
+
         }
 
         private void label4_Click(object sender, EventArgs e)

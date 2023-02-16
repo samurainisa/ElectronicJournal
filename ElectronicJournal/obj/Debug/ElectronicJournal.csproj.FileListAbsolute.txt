@@ -95,3 +95,4 @@ C:\Users\Nik\source\repos\ElectronicJournal\ElectronicJournal\bin\Debug\Microsof
 C:\Users\Nik\source\repos\ElectronicJournal\ElectronicJournal\bin\Debug\ru\EntityFramework.resources.dll
 C:\Users\Nik\source\repos\ElectronicJournal\ElectronicJournal\bin\Debug\ru\EntityFramework.SqlServer.resources.dll
 C:\Users\Nik\source\repos\ElectronicJournal\ElectronicJournal\obj\Debug\ElectronicJournal.Формы.WordExportForm.resources
+C:\Users\Nik\source\repos\ElectronicJournal\ElectronicJournal\obj\Debug\ElectronicJournal.Формы.PrintTablesFormSelect.resources

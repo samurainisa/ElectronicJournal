@@ -10,14 +10,14 @@ using System.Windows.Forms;
 
 namespace ElectronicJournal.Формы
 {
-    public partial class WordExportForm : Form
+    public partial class PrintTablesFormSelect : Form
     {
         public string tableName { get; set; }
 
-        public WordExportForm()
+        public PrintTablesFormSelect()
         {
             InitializeComponent();
-            StartPosition = FormStartPosition.CenterScreen;
+
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -26,8 +26,9 @@ namespace ElectronicJournal.Формы
             Close();
         }
 
-        private void WordExportForm_Load(object sender, EventArgs e)
+        private void PrintTablesFormSelect_Load(object sender, EventArgs e)
         {
+
         }
     }
 }

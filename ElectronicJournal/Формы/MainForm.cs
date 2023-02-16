@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Printing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,23 +22,23 @@ namespace ElectronicJournal.Формы
         {
             InitializeComponent();
 
-            dataGridView8.DataSource = db.USERS.ToList();
-            dataGridView1.DataSource = db.violations.ToList();
-            dataGridView2.DataSource = db.violation_resolution.ToList();
-            dataGridView3.DataSource = db.employee_violation.ToList();
-            dataGridView4.DataSource = db.employees.ToList();
-            dataGridView5.DataSource = db.trainings.ToList();
-            dataGridView6.DataSource = db.addresses.ToList();
-            dataGridView7.DataSource = db.employee_training.ToList();
+            users.DataSource = db.USERS.ToList();
+            violations.DataSource = db.violations.ToList();
+            violations_resolution.DataSource = db.violation_resolution.ToList();
+            employee_violatuion.DataSource = db.employee_violation.ToList();
+            employee.DataSource = db.employees.ToList();
+            trainings.DataSource = db.trainings.ToList();
+            addresses.DataSource = db.addresses.ToList();
+            employee_training.DataSource = db.employee_training.ToList();
 
-            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridView2.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridView3.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridView4.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridView5.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridView6.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridView7.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridView8.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            violations.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            violations_resolution.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            employee_violatuion.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            employee.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            trainings.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            addresses.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            employee_training.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            users.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
         }
 
         private void MainForm_Load(object sender, EventArgs e)
@@ -46,6 +47,7 @@ namespace ElectronicJournal.Формы
 
         private void выходToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            this.Close();
         }
 
         private void excelToolStripMenuItem_Click(object sender, EventArgs e)
@@ -53,39 +55,38 @@ namespace ElectronicJournal.Формы
             ExcelTableConfirmForm excelTableConfirmForm = new ExcelTableConfirmForm();
             excelTableConfirmForm.ShowDialog();
             string tableName = excelTableConfirmForm.tableName;
-            MessageBox.Show(tableName);
 
             if (tableName == "violations")
             {
-                ExportToExcel(dataGridView1);
+                ExportToExcel(violations);
             }
             else if (tableName == "violation_resolution")
             {
-                ExportToExcel(dataGridView2);
+                ExportToExcel(violations_resolution);
             }
             else if (tableName == "employee_violation")
             {
-                ExportToExcel(dataGridView3);
+                ExportToExcel(employee_violatuion);
             }
             else if (tableName == "employees")
             {
-                ExportToExcel(dataGridView4);
+                ExportToExcel(employee);
             }
             else if (tableName == "trainings")
             {
-                ExportToExcel(dataGridView5);
+                ExportToExcel(trainings);
             }
             else if (tableName == "addresses")
             {
-                ExportToExcel(dataGridView6);
+                ExportToExcel(addresses);
             }
             else if (tableName == "employee_training")
             {
-                ExportToExcel(dataGridView7);
+                ExportToExcel(employee_training);
             }
             else if (tableName == "USERS")
             {
-                ExportToExcel(dataGridView8);
+                ExportToExcel(users);
             }
         }
 
@@ -127,6 +128,11 @@ namespace ElectronicJournal.Формы
 
                 // Сохраняем книгу
                 workbook.SaveAs(saveFileDialog.FileName);
+                if (MessageBox.Show("Файл успешно сохранен. Открыть файл?", "Уведомление", MessageBoxButtons.YesNo,
+                        MessageBoxIcon.Information) == DialogResult.Yes)
+                {
+                    excel.Visible = true;
+                }
 
                 // Закрываем книгу и приложение Excel
                 workbook.Close();
@@ -139,39 +145,39 @@ namespace ElectronicJournal.Формы
             WordExportForm wordExportForm = new WordExportForm();
             wordExportForm.ShowDialog();
             string tableName = wordExportForm.tableName;
-            MessageBox.Show(tableName);
+
 
             if (tableName == "violations")
             {
-                ExportToWord(dataGridView1);
+                ExportToWord(violations);
             }
             else if (tableName == "violation_resolution")
             {
-                ExportToWord(dataGridView2);
+                ExportToWord(violations_resolution);
             }
             else if (tableName == "employee_violation")
             {
-                ExportToWord(dataGridView3);
+                ExportToWord(employee_violatuion);
             }
             else if (tableName == "employees")
             {
-                ExportToWord(dataGridView4);
+                ExportToWord(employee);
             }
             else if (tableName == "trainings")
             {
-                ExportToWord(dataGridView5);
+                ExportToWord(trainings);
             }
             else if (tableName == "addresses")
             {
-                ExportToWord(dataGridView6);
+                ExportToWord(addresses);
             }
             else if (tableName == "employee_training")
             {
-                ExportToWord(dataGridView7);
+                ExportToWord(employee_training);
             }
             else if (tableName == "USERS")
             {
-                ExportToWord(dataGridView8);
+                ExportToWord(users);
             }
         }
 
@@ -219,9 +225,107 @@ namespace ElectronicJournal.Формы
 
                 // Закрываем документ Word
                 document.Close();
-
+                if (MessageBox.Show("Файл успешно сохранен. Открыть файл?", "Уведомление", MessageBoxButtons.YesNo,
+                        MessageBoxIcon.Information) == DialogResult.Yes)
+                {
+                    word.Visible = true;
+                }
                 // Закрываем приложение Word
                 word.Quit();
+            }
+        }
+
+        private void печатьToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            PrintTablesFormSelect print = new PrintTablesFormSelect();
+            print.ShowDialog();
+            string tableName = print.tableName;
+            if (tableName == "violations")
+            {
+                PrintDataGridView(violations);
+            }
+            else if (tableName == "violation_resolution")
+            {
+                PrintDataGridView(violations_resolution);
+            }
+            else if (tableName == "employee_violation")
+            {
+                PrintDataGridView(employee_violatuion);
+            }
+            else if (tableName == "employees")
+            {
+                PrintDataGridView(employee);
+            }
+            else if (tableName == "trainings")
+            {
+                PrintDataGridView(trainings);
+            }
+            else if (tableName == "addresses")
+            {
+                PrintDataGridView(addresses);
+            }
+            else if (tableName == "employee_training")
+            {
+                PrintDataGridView(employee_training);
+            }
+            else if (tableName == "USERS")
+            {
+                PrintDataGridView(users);
+            }
+        }
+
+        public static void PrintDataGridView(DataGridView dtg)
+        {
+            // Создаем объект PrintDocument
+            PrintDocument printDocument = new PrintDocument();
+
+            // Обработчик события PrintPage для печати содержимого DataGridView
+            printDocument.PrintPage += (sender, e) =>
+            {
+                // Определяем область печати
+                Rectangle printArea = e.MarginBounds;
+
+                // Рисуем заголовок таблицы
+                string headerText = dtg.Name;
+                Font headerFont = new Font("Arial", 14, FontStyle.Bold);
+                SizeF headerSize = e.Graphics.MeasureString(headerText, headerFont);
+                RectangleF headerRect =
+                    new RectangleF(printArea.Left, printArea.Top, printArea.Width, headerSize.Height);
+                e.Graphics.DrawString(headerText, headerFont, Brushes.Black, headerRect, StringFormat.GenericDefault);
+
+                // Рисуем содержимое таблицы
+                int rowHeight = dtg.RowTemplate.Height;
+                int y = (int)headerRect.Bottom + 10;
+                foreach (DataGridViewRow row in dtg.Rows)
+                {
+                    int x = printArea.Left;
+                    for (int i = 0; i < dtg.Columns.Count; i++)
+                    {
+                        DataGridViewCell cell = row.Cells[i];
+                        Rectangle cellRect = new Rectangle(x, y, cell.Size.Width, rowHeight);
+                        e.Graphics.DrawRectangle(Pens.Black, cellRect);
+                        e.Graphics.DrawString(cell.FormattedValue.ToString(), dtg.Font, Brushes.Black, cellRect,
+                            StringFormat.GenericDefault);
+                        x += cell.Size.Width;
+                    }
+
+                    y += rowHeight;
+                }
+            };
+            if (printDocument.DefaultPageSettings.Landscape)
+            {
+                printDocument.DefaultPageSettings.Landscape = false;
+            }
+            else
+            {
+                printDocument.DefaultPageSettings.Landscape = true;
+            }
+            // Открываем диалог печати и печатаем содержимое таблицы
+            PrintDialog printDialog = new PrintDialog();
+            printDialog.Document = printDocument;
+            if (printDialog.ShowDialog() == DialogResult.OK)
+            {
+                printDocument.Print();
             }
         }
     }
