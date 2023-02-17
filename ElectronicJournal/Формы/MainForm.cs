@@ -3,10 +3,12 @@ using System;
 using System.Drawing;
 using System.Drawing.Printing;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using ElectronicJournal.Формы.Формы_для_добавления;
 using Excel = Microsoft.Office.Interop.Excel;
 using MaterialSkin.Controls;
+using System.Data;
 
 namespace ElectronicJournal.Формы
 {
@@ -17,16 +19,6 @@ namespace ElectronicJournal.Формы
         public MainForm()
         {
             InitializeComponent();
-
-            users.DataSource = db.USERS.ToList();
-            violations.DataSource = db.violations.ToList();
-            violations_resolution.DataSource = db.violation_resolution.ToList();
-            employee_violatuion.DataSource = db.employee_violation.ToList();
-            employee.DataSource = db.employees.ToList();
-            trainings.DataSource = db.trainings.ToList();
-            addresses.DataSource = db.addresses.ToList();
-            employee_training.DataSource = db.employee_training.ToList();
-
             violations.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             violations_resolution.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             employee_violatuion.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
@@ -35,42 +27,25 @@ namespace ElectronicJournal.Формы
             addresses.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             employee_training.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             users.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            //
-            // //добавление двух столбцов с кнопками для удаления и редактирования
-            // AddButtons(violations);
-            // AddButtons(violations_resolution);
-            // AddButtons(employee_violatuion);
-            // AddButtons(employee);
-            // AddButtons(trainings);
-            // AddButtons(addresses);
-            // AddButtons(employee_training);
-            // AddButtons(users);
         }
-        //universal method for add 2 col and buttons for edit and delete
-        private void AddButtons(DataGridView dataGridView)
+
+        public async Task PreloadFromDatabaseAsync()
         {
-            DataGridViewButtonColumn deleteButton = new DataGridViewButtonColumn();
-            deleteButton.HeaderText = "Удалить";
-            deleteButton.Text = "Удалить";
-            deleteButton.UseColumnTextForButtonValue = true;
-            dataGridView.Columns.Add(deleteButton);
-
-            DataGridViewButtonColumn editButton = new DataGridViewButtonColumn();
-            editButton.HeaderText = "Редактировать";
-            editButton.Text = "Редактировать";
-            editButton.UseColumnTextForButtonValue = true;
-            dataGridView.Columns.Add(editButton);
-        }   
-
-        private void MainForm_Load(object sender, EventArgs e)
-        {
-
+            users.DataSource = await Task.Run(() => db.USERS.ToList());
+            violations.DataSource = await Task.Run(() => db.violations.ToList());
+            violations_resolution.DataSource = await Task.Run(() => db.violation_resolution.ToList());
+            employee_violatuion.DataSource = await Task.Run(() => db.employee_violation.ToList());
+            employee.DataSource = await Task.Run(() => db.employees.ToList());
+            trainings.DataSource = await Task.Run(() => db.trainings.ToList());
+            addresses.DataSource = await Task.Run(() => db.addresses.ToList());
+            employee_training.DataSource = await Task.Run(() => db.employee_training.ToList());
         }
 
         private void выходToolStripMenuItem_Click(object sender, EventArgs e)
         {
             //вы уверены что хотите выйти?
-            DialogResult result = MessageBox.Show("Вы уверены что хотите выйти?", "Выход", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            DialogResult result = MessageBox.Show("Вы уверены что хотите выйти?", "Выход", MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question);
             if (result == DialogResult.Yes)
             {
                 AuthForm authForm = new AuthForm();
@@ -84,36 +59,35 @@ namespace ElectronicJournal.Формы
             ExcelTableConfirmForm excelTableConfirmForm = new ExcelTableConfirmForm();
             excelTableConfirmForm.ShowDialog();
             string tableName = excelTableConfirmForm.tableName;
-
-            if (tableName == "violations")
+            if (tableName == "Нарушения")
             {
                 ExportToExcel(violations);
             }
-            else if (tableName == "violation_resolution")
+            else if (tableName == "Устранение нарушений")
             {
                 ExportToExcel(violations_resolution);
             }
-            else if (tableName == "employee_violation")
+            else if (tableName == "Мероприятия")
             {
                 ExportToExcel(employee_violatuion);
             }
-            else if (tableName == "employees")
+            else if (tableName == "Сотрудники")
             {
                 ExportToExcel(employee);
             }
-            else if (tableName == "trainings")
+            else if (tableName == "Инструктажи")
             {
                 ExportToExcel(trainings);
             }
-            else if (tableName == "addresses")
+            else if (tableName == "Адреса")
             {
                 ExportToExcel(addresses);
             }
-            else if (tableName == "employee_training")
+            else if (tableName == "Обучение персонала")
             {
                 ExportToExcel(employee_training);
             }
-            else if (tableName == "USERS")
+            else if (tableName == "Пользователи")
             {
                 ExportToExcel(users);
             }
@@ -175,36 +149,35 @@ namespace ElectronicJournal.Формы
             wordExportForm.ShowDialog();
             string tableName = wordExportForm.tableName;
 
-
-            if (tableName == "violations")
+            if (tableName == "Нарушения")
             {
                 ExportToWord(violations);
             }
-            else if (tableName == "violation_resolution")
+            else if (tableName == "Устранение нарушений")
             {
                 ExportToWord(violations_resolution);
             }
-            else if (tableName == "employee_violation")
+            else if (tableName == "Мероприятия")
             {
                 ExportToWord(employee_violatuion);
             }
-            else if (tableName == "employees")
+            else if (tableName == "Сотрудники")
             {
                 ExportToWord(employee);
             }
-            else if (tableName == "trainings")
+            else if (tableName == "Инструктажи")
             {
                 ExportToWord(trainings);
             }
-            else if (tableName == "addresses")
+            else if (tableName == "Адреса")
             {
                 ExportToWord(addresses);
             }
-            else if (tableName == "employee_training")
+            else if (tableName == "Обучение персонала")
             {
                 ExportToWord(employee_training);
             }
-            else if (tableName == "USERS")
+            else if (tableName == "Пользователи")
             {
                 ExportToWord(users);
             }
@@ -259,6 +232,7 @@ namespace ElectronicJournal.Формы
                 {
                     word.Visible = true;
                 }
+
                 // Закрываем приложение Word
                 word.Quit();
             }
@@ -269,35 +243,35 @@ namespace ElectronicJournal.Формы
             PrintTablesFormSelect print = new PrintTablesFormSelect();
             print.ShowDialog();
             string tableName = print.tableName;
-            if (tableName == "violations")
+            if (tableName == "Нарушения")
             {
                 PrintDataGridView(violations);
             }
-            else if (tableName == "violation_resolution")
+            else if (tableName == "Устранение нарушений")
             {
                 PrintDataGridView(violations_resolution);
             }
-            else if (tableName == "employee_violation")
+            else if (tableName == "Мероприятия")
             {
                 PrintDataGridView(employee_violatuion);
             }
-            else if (tableName == "employees")
+            else if (tableName == "Сотрудники")
             {
                 PrintDataGridView(employee);
             }
-            else if (tableName == "trainings")
+            else if (tableName == "Инструктажи")
             {
                 PrintDataGridView(trainings);
             }
-            else if (tableName == "addresses")
+            else if (tableName == "Адреса")
             {
                 PrintDataGridView(addresses);
             }
-            else if (tableName == "employee_training")
+            else if (tableName == "Обучение персонала")
             {
                 PrintDataGridView(employee_training);
             }
-            else if (tableName == "USERS")
+            else if (tableName == "Пользователи")
             {
                 PrintDataGridView(users);
             }
@@ -349,7 +323,7 @@ namespace ElectronicJournal.Формы
             {
                 printDocument.DefaultPageSettings.Landscape = true;
             }
-            // Открываем диалог печати и печатаем содержимое таблицы
+
             PrintDialog printDialog = new PrintDialog();
             printDialog.Document = printDocument;
             if (printDialog.ShowDialog() == DialogResult.OK)
@@ -358,34 +332,22 @@ namespace ElectronicJournal.Формы
             }
         }
 
-        private void добавитьToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void пользовательToolStripMenuItem_Click(object sender, EventArgs e)
         {
             AddUserForm userform = new AddUserForm();
             userform.Show();
-
-        }
-
-        private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
-        {
-
         }
 
         private void нарушениеToolStripMenuItem_Click(object sender, EventArgs e)
         {
             AddViolenceForm violenceform = new AddViolenceForm();
             violenceform.Show();
-
         }
 
         private void работникиToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
-
+            AddEmployeesForm employeesform = new AddEmployeesForm();
+            employeesform.Show();
         }
 
         private void адресаToolStripMenuItem_Click(object sender, EventArgs e)
@@ -398,13 +360,68 @@ namespace ElectronicJournal.Формы
         {
             AddInstructForm frm = new AddInstructForm();
             frm.Show();
-
         }
 
         private void устранениенарушенийToolStripMenuItem_Click(object sender, EventArgs e)
         {
             AddViolationResolutionForm frm = new AddViolationResolutionForm();
             frm.Show();
+        }
+
+        private void работникнарушениеToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            addEmployeeTrainingForm frm = new addEmployeeTrainingForm();
+            frm.Show();
+        }
+
+        private void обучениеперсоналаToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AddTrainingEmployeeForm frm = new AddTrainingEmployeeForm();
+            frm.Show();
+        }
+
+        private async void MainForm_Load(object sender, EventArgs e)
+        {
+            await PreloadFromDatabaseAsync();
+        }
+
+        private void materialFlatButton1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void users_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void users_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            int selectedRowID = -1;
+            if (e.RowIndex >= 0 && e.RowIndex < users.Rows.Count)
+            {
+                DataGridViewRow selectedRow = users.Rows[e.RowIndex];
+                selectedRowID = (int)selectedRow.Cells["ID"].Value; // предполагается, что в таблице есть столбец с именем "ID"
+            }
+
+            // Удаление строки из базы данных
+            if (selectedRowID > 0)
+            {
+                try
+                {
+                    var rowToDelete = db.USERS.Find(selectedRowID); // предполагается, что в базе данных есть таблица с именем "MyTable"
+                    db.USERS.Remove(rowToDelete);
+                    db.SaveChanges();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Не удалось удалить строку из базы данных. Ошибка: {ex.Message}", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                // Обновление источника данных для DataGridView
+                users.DataSource = db.USERS.ToList();
+            }
         }
     }
 }

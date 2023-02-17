@@ -27,3 +27,7 @@ C:\Users\Nik\source\repos\ElectronicJournal\ElectronicJournal\obj\Debug\Electron
 C:\Users\Nik\source\repos\ElectronicJournal\ElectronicJournal\obj\Debug\ElectronicJournal.Формы.Формы_для_добавления.AddAddressform.resources
 C:\Users\Nik\source\repos\ElectronicJournal\ElectronicJournal\obj\Debug\ElectronicJournal.Формы.Формы_для_добавления.AddInstructForm.resources
 C:\Users\Nik\source\repos\ElectronicJournal\ElectronicJournal\obj\Debug\ElectronicJournal.Формы.Формы_для_добавления.AddViolationResolutionForm.resources
+C:\Users\Nik\source\repos\ElectronicJournal\ElectronicJournal\obj\Debug\ElectronicJournal.Формы.Формы_для_добавления.addEmployeeTrainingForm.resources
+C:\Users\Nik\source\repos\ElectronicJournal\ElectronicJournal\obj\Debug\ElectronicJournal.Формы.Формы_для_добавления.AddTrainingEmployeeForm.resources
+C:\Users\Nik\source\repos\ElectronicJournal\ElectronicJournal\obj\Debug\ElectronicJournal.Формы.Формы_для_добавления.AddEmployeesForm.resources
+C:\Users\Nik\source\repos\ElectronicJournal\ElectronicJournal\obj\Debug\ElectronicJournal.Формы.Формы_для_удаления.DeleteUserForm.resources

@@ -38,14 +38,14 @@
             this.domainUpDown1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.domainUpDown1.FormattingEnabled = true;
             this.domainUpDown1.Items.AddRange(new object[] {
-            "USERS",
-            "violations",
-            "violation_resolution",
-            "employee_violation",
-            "employees",
-            "trainings",
-            "addresses",
-            "employee_trainin"});
+            "Пользователи",
+            "Нарушения",
+            "Устранение нарушений",
+            "Мероприятия",
+            "Сотрудники",
+            "Инструктажи",
+            "Адреса",
+            "Обучение персонала"});
             this.domainUpDown1.Location = new System.Drawing.Point(55, 120);
             this.domainUpDown1.Name = "domainUpDown1";
             this.domainUpDown1.Size = new System.Drawing.Size(237, 24);

@@ -169,11 +169,29 @@
     <Compile Include="Формы\Формы для добавления\AddAddressform.Designer.cs">
       <DependentUpon>AddAddressform.cs</DependentUpon>
     </Compile>
+    <Compile Include="Формы\Формы для добавления\AddEmployeesForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Формы\Формы для добавления\AddEmployeesForm.Designer.cs">
+      <DependentUpon>AddEmployeesForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Формы\Формы для добавления\addEmployeeTrainingForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Формы\Формы для добавления\addEmployeeTrainingForm.Designer.cs">
+      <DependentUpon>addEmployeeTrainingForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Формы\Формы для добавления\AddInstructForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Формы\Формы для добавления\AddInstructForm.Designer.cs">
       <DependentUpon>AddInstructForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Формы\Формы для добавления\AddTrainingEmployeeForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Формы\Формы для добавления\AddTrainingEmployeeForm.Designer.cs">
+      <DependentUpon>AddTrainingEmployeeForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Формы\Формы для добавления\AddUserForm.cs">
       <SubType>Form</SubType>
@@ -192,6 +210,12 @@
     </Compile>
     <Compile Include="Формы\Формы для добавления\AddViolenceForm.Designer.cs">
       <DependentUpon>AddViolenceForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Формы\Формы для удаления\DeleteUserForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Формы\Формы для удаления\DeleteUserForm.Designer.cs">
+      <DependentUpon>DeleteUserForm.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -224,8 +248,17 @@
     <EmbeddedResource Include="Формы\Формы для добавления\AddAddressform.resx">
       <DependentUpon>AddAddressform.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Формы\Формы для добавления\AddEmployeesForm.resx">
+      <DependentUpon>AddEmployeesForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Формы\Формы для добавления\addEmployeeTrainingForm.resx">
+      <DependentUpon>addEmployeeTrainingForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Формы\Формы для добавления\AddInstructForm.resx">
       <DependentUpon>AddInstructForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Формы\Формы для добавления\AddTrainingEmployeeForm.resx">
+      <DependentUpon>AddTrainingEmployeeForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Формы\Формы для добавления\AddUserForm.resx">
       <DependentUpon>AddUserForm.cs</DependentUpon>
@@ -235,6 +268,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Формы\Формы для добавления\AddViolenceForm.resx">
       <DependentUpon>AddViolenceForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Формы\Формы для удаления\DeleteUserForm.resx">
+      <DependentUpon>DeleteUserForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="InstDBDataSet.xsc">
       <DependentUpon>InstDBDataSet.xsd</DependentUpon>
