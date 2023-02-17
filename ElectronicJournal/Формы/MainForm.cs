@@ -374,5 +374,37 @@ namespace ElectronicJournal.Формы
         {
 
         }
+
+        private void нарушениеToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AddViolenceForm violenceform = new AddViolenceForm();
+            violenceform.Show();
+
+        }
+
+        private void работникиToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+
+        }
+
+        private void адресаToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AddAddressform frm = new AddAddressform();
+            frm.Show();
+        }
+
+        private void инструктажиToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AddInstructForm frm = new AddInstructForm();
+            frm.Show();
+
+        }
+
+        private void устранениенарушенийToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AddViolationResolutionForm frm = new AddViolationResolutionForm();
+            frm.Show();
+        }
     }
 }

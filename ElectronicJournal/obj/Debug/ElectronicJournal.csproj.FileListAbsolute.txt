@@ -23,3 +23,7 @@ C:\Users\Nik\source\repos\ElectronicJournal\ElectronicJournal\obj\Debug\Electron
 C:\Users\Nik\source\repos\ElectronicJournal\ElectronicJournal\obj\Debug\ElectronicJournal.Формы.PrintTablesFormSelect.resources
 C:\Users\Nik\source\repos\ElectronicJournal\ElectronicJournal\obj\Debug\ElectronicJournal.Формы.Формы_для_добавления.AddUserForm.resources
 C:\Users\Nik\source\repos\ElectronicJournal\ElectronicJournal\bin\Debug\MaterialSkin.dll
+C:\Users\Nik\source\repos\ElectronicJournal\ElectronicJournal\obj\Debug\ElectronicJournal.Формы.Формы_для_добавления.AddViolenceForm.resources
+C:\Users\Nik\source\repos\ElectronicJournal\ElectronicJournal\obj\Debug\ElectronicJournal.Формы.Формы_для_добавления.AddAddressform.resources
+C:\Users\Nik\source\repos\ElectronicJournal\ElectronicJournal\obj\Debug\ElectronicJournal.Формы.Формы_для_добавления.AddInstructForm.resources
+C:\Users\Nik\source\repos\ElectronicJournal\ElectronicJournal\obj\Debug\ElectronicJournal.Формы.Формы_для_добавления.AddViolationResolutionForm.resources

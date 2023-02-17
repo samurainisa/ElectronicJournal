@@ -39,7 +39,7 @@
             this.button1.AutoSize = true;
             this.button1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.button1.Depth = 0;
-            this.button1.Location = new System.Drawing.Point(91, 239);
+            this.button1.Location = new System.Drawing.Point(91, 251);
             this.button1.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.button1.MouseState = MaterialSkin.MouseState.HOVER;
             this.button1.Name = "button1";
@@ -54,7 +54,7 @@
             // 
             this.textBox2.Depth = 0;
             this.textBox2.Hint = "Логин";
-            this.textBox2.Location = new System.Drawing.Point(71, 78);
+            this.textBox2.Location = new System.Drawing.Point(68, 86);
             this.textBox2.MouseState = MaterialSkin.MouseState.HOVER;
             this.textBox2.Name = "textBox2";
             this.textBox2.PasswordChar = '\0';
@@ -64,12 +64,13 @@
             this.textBox2.Size = new System.Drawing.Size(251, 23);
             this.textBox2.TabIndex = 13;
             this.textBox2.UseSystemPasswordChar = false;
+            this.textBox2.Click += new System.EventHandler(this.textBox2_Click);
             // 
             // textBox3
             // 
             this.textBox3.Depth = 0;
             this.textBox3.Hint = "Пароль";
-            this.textBox3.Location = new System.Drawing.Point(71, 135);
+            this.textBox3.Location = new System.Drawing.Point(68, 143);
             this.textBox3.MouseState = MaterialSkin.MouseState.HOVER;
             this.textBox3.Name = "textBox3";
             this.textBox3.PasswordChar = '\0';
@@ -79,12 +80,13 @@
             this.textBox3.Size = new System.Drawing.Size(251, 23);
             this.textBox3.TabIndex = 14;
             this.textBox3.UseSystemPasswordChar = false;
+            this.textBox3.Click += new System.EventHandler(this.textBox3_Click);
             // 
             // textBox4
             // 
             this.textBox4.Depth = 0;
             this.textBox4.Hint = "Уровень";
-            this.textBox4.Location = new System.Drawing.Point(71, 188);
+            this.textBox4.Location = new System.Drawing.Point(68, 196);
             this.textBox4.MouseState = MaterialSkin.MouseState.HOVER;
             this.textBox4.Name = "textBox4";
             this.textBox4.PasswordChar = '\0';
@@ -94,12 +96,13 @@
             this.textBox4.Size = new System.Drawing.Size(251, 23);
             this.textBox4.TabIndex = 15;
             this.textBox4.UseSystemPasswordChar = false;
+            this.textBox4.Click += new System.EventHandler(this.textBox4_Click);
             // 
             // AddUserForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(391, 290);
+            this.ClientSize = new System.Drawing.Size(391, 302);
             this.Controls.Add(this.textBox4);
             this.Controls.Add(this.textBox3);
             this.Controls.Add(this.textBox2);

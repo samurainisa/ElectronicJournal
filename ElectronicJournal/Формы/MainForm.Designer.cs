@@ -335,12 +335,14 @@
             this.нарушениеToolStripMenuItem.Name = "нарушениеToolStripMenuItem";
             this.нарушениеToolStripMenuItem.Size = new System.Drawing.Size(207, 22);
             this.нарушениеToolStripMenuItem.Text = "Нарушение";
+            this.нарушениеToolStripMenuItem.Click += new System.EventHandler(this.нарушениеToolStripMenuItem_Click);
             // 
             // устранениенарушенийToolStripMenuItem
             // 
             this.устранениенарушенийToolStripMenuItem.Name = "устранениенарушенийToolStripMenuItem";
             this.устранениенарушенийToolStripMenuItem.Size = new System.Drawing.Size(207, 22);
             this.устранениенарушенийToolStripMenuItem.Text = "Устранение_нарушений";
+            this.устранениенарушенийToolStripMenuItem.Click += new System.EventHandler(this.устранениенарушенийToolStripMenuItem_Click);
             // 
             // работникнарушениеToolStripMenuItem
             // 
@@ -353,18 +355,21 @@
             this.работникиToolStripMenuItem.Name = "работникиToolStripMenuItem";
             this.работникиToolStripMenuItem.Size = new System.Drawing.Size(207, 22);
             this.работникиToolStripMenuItem.Text = "Работники";
+            this.работникиToolStripMenuItem.Click += new System.EventHandler(this.работникиToolStripMenuItem_Click);
             // 
             // инструктажиToolStripMenuItem
             // 
             this.инструктажиToolStripMenuItem.Name = "инструктажиToolStripMenuItem";
             this.инструктажиToolStripMenuItem.Size = new System.Drawing.Size(207, 22);
             this.инструктажиToolStripMenuItem.Text = "Инструктажи";
+            this.инструктажиToolStripMenuItem.Click += new System.EventHandler(this.инструктажиToolStripMenuItem_Click);
             // 
             // адресаToolStripMenuItem
             // 
             this.адресаToolStripMenuItem.Name = "адресаToolStripMenuItem";
             this.адресаToolStripMenuItem.Size = new System.Drawing.Size(207, 22);
             this.адресаToolStripMenuItem.Text = "Адреса";
+            this.адресаToolStripMenuItem.Click += new System.EventHandler(this.адресаToolStripMenuItem_Click);
             // 
             // обучениеперсоналаToolStripMenuItem
             // 

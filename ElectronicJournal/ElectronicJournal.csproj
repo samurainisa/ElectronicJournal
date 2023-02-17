@@ -163,11 +163,35 @@
     <Compile Include="Формы\WordExportForm.Designer.cs">
       <DependentUpon>WordExportForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Формы\Формы для добавления\AddAddressform.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Формы\Формы для добавления\AddAddressform.Designer.cs">
+      <DependentUpon>AddAddressform.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Формы\Формы для добавления\AddInstructForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Формы\Формы для добавления\AddInstructForm.Designer.cs">
+      <DependentUpon>AddInstructForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Формы\Формы для добавления\AddUserForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Формы\Формы для добавления\AddUserForm.Designer.cs">
       <DependentUpon>AddUserForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Формы\Формы для добавления\AddViolationResolutionForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Формы\Формы для добавления\AddViolationResolutionForm.Designer.cs">
+      <DependentUpon>AddViolationResolutionForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Формы\Формы для добавления\AddViolenceForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Формы\Формы для добавления\AddViolenceForm.Designer.cs">
+      <DependentUpon>AddViolenceForm.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -197,8 +221,20 @@
     <EmbeddedResource Include="Формы\WordExportForm.resx">
       <DependentUpon>WordExportForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Формы\Формы для добавления\AddAddressform.resx">
+      <DependentUpon>AddAddressform.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Формы\Формы для добавления\AddInstructForm.resx">
+      <DependentUpon>AddInstructForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Формы\Формы для добавления\AddUserForm.resx">
       <DependentUpon>AddUserForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Формы\Формы для добавления\AddViolationResolutionForm.resx">
+      <DependentUpon>AddViolationResolutionForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Формы\Формы для добавления\AddViolenceForm.resx">
+      <DependentUpon>AddViolenceForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="InstDBDataSet.xsc">
       <DependentUpon>InstDBDataSet.xsd</DependentUpon>

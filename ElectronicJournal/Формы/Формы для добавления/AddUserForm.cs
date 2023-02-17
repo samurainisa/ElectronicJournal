@@ -62,5 +62,20 @@ namespace ElectronicJournal.Формы.Формы_для_добавления
             }
 
         }
+
+        private void textBox3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox4_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
