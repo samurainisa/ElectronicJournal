@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Хранилище InstDBModelContainer" CdmEntityContainer="InstDBEntities1">
+    <EntitySetMapping Name="addresses">
+      <EntityTypeMapping TypeName="InstDBModel.addresses">
+        <MappingFragment StoreEntitySet="addresses">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="address" ColumnName="address" />
+          <ScalarProperty Name="employee_id" ColumnName="employee_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="employee_training">
+      <EntityTypeMapping TypeName="InstDBModel.employee_training">
+        <MappingFragment StoreEntitySet="employee_training">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="employee_id" ColumnName="employee_id" />
+          <ScalarProperty Name="training_id" ColumnName="training_id" />
+          <ScalarProperty Name="completion_date" ColumnName="completion_date" />
+          <ScalarProperty Name="employee_code" ColumnName="employee_code" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="employee_violation">
+      <EntityTypeMapping TypeName="InstDBModel.employee_violation">
+        <MappingFragment StoreEntitySet="employee_violation">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="employee_id" ColumnName="employee_id" />
+          <ScalarProperty Name="violation_id" ColumnName="violation_id" />
+          <ScalarProperty Name="violation_date" ColumnName="violation_date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="employees">
+      <EntityTypeMapping TypeName="InstDBModel.employees">
+        <MappingFragment StoreEntitySet="employees">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="position" ColumnName="position" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="InstDBModel.sysdiagrams">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="trainings">
+      <EntityTypeMapping TypeName="InstDBModel.trainings">
+        <MappingFragment StoreEntitySet="trainings">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="description" ColumnName="description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="USERS">
+      <EntityTypeMapping TypeName="InstDBModel.USERS">
+        <MappingFragment StoreEntitySet="USERS">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="username" ColumnName="username" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="access_level" ColumnName="access_level" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="violation_resolution">
+      <EntityTypeMapping TypeName="InstDBModel.violation_resolution">
+        <MappingFragment StoreEntitySet="violation_resolution">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="violation_id" ColumnName="violation_id" />
+          <ScalarProperty Name="resolution" ColumnName="resolution" />
+          <ScalarProperty Name="resolution_date" ColumnName="resolution_date" />
+          <ScalarProperty Name="employee_code" ColumnName="employee_code" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="violations">
+      <EntityTypeMapping TypeName="InstDBModel.violations">
+        <MappingFragment StoreEntitySet="violations">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="control_level" ColumnName="control_level" />
+          <ScalarProperty Name="due_date" ColumnName="due_date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

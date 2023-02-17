@@ -1,13 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Data.SqlClient;
-using System.Drawing;
-using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace ElectronicJournal.Формы
@@ -42,7 +36,6 @@ namespace ElectronicJournal.Формы
                     connection.Open();
                     int rowsAffected = command.ExecuteNonQuery();
 
-                    // If the query was successful, rowsAffected will be greater than 0
                     if (rowsAffected > 0)
                     {
                         MessageBox.Show("You have successfully registered");
@@ -53,7 +46,6 @@ namespace ElectronicJournal.Формы
                     }
                 }
             }
-
         }
 
         private void RegistrationForm_Load(object sender, EventArgs e)

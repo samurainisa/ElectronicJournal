@@ -1,15 +1,10 @@
 ﻿using ElectronicJournal.Model;
-using OfficeOpenXml;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.Drawing.Printing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using ElectronicJournal.Формы.Формы_для_добавления;
 using Excel = Microsoft.Office.Interop.Excel;
 
 namespace ElectronicJournal.Формы
@@ -39,10 +34,36 @@ namespace ElectronicJournal.Формы
             addresses.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             employee_training.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             users.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            //
+            // //добавление двух столбцов с кнопками для удаления и редактирования
+            // AddButtons(violations);
+            // AddButtons(violations_resolution);
+            // AddButtons(employee_violatuion);
+            // AddButtons(employee);
+            // AddButtons(trainings);
+            // AddButtons(addresses);
+            // AddButtons(employee_training);
+            // AddButtons(users);
         }
+        //universal method for add 2 col and buttons for edit and delete
+        private void AddButtons(DataGridView dataGridView)
+        {
+            DataGridViewButtonColumn deleteButton = new DataGridViewButtonColumn();
+            deleteButton.HeaderText = "Удалить";
+            deleteButton.Text = "Удалить";
+            deleteButton.UseColumnTextForButtonValue = true;
+            dataGridView.Columns.Add(deleteButton);
+
+            DataGridViewButtonColumn editButton = new DataGridViewButtonColumn();
+            editButton.HeaderText = "Редактировать";
+            editButton.Text = "Редактировать";
+            editButton.UseColumnTextForButtonValue = true;
+            dataGridView.Columns.Add(editButton);
+        }   
 
         private void MainForm_Load(object sender, EventArgs e)
         {
+
         }
 
         private void выходToolStripMenuItem_Click(object sender, EventArgs e)
@@ -327,6 +348,18 @@ namespace ElectronicJournal.Формы
             {
                 printDocument.Print();
             }
+        }
+
+        private void добавитьToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void пользовательToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AddUserForm userform = new AddUserForm();
+            userform.Show();
+
         }
     }
 }

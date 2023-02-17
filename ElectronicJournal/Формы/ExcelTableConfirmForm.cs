@@ -1,11 +1,7 @@
 ﻿using ElectronicJournal.Model;
 using System;
-using System.IO;
-using System.Linq;
 using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using Button = System.Windows.Forms.Button;
-using Excel = Microsoft.Office.Interop.Excel;
 
 namespace ElectronicJournal.Формы
 {
