@@ -22,3 +22,4 @@ C:\Users\Nik\source\repos\ElectronicJournal\ElectronicJournal\bin\Debug\ru\Entit
 C:\Users\Nik\source\repos\ElectronicJournal\ElectronicJournal\obj\Debug\ElectronicJournal.Формы.WordExportForm.resources
 C:\Users\Nik\source\repos\ElectronicJournal\ElectronicJournal\obj\Debug\ElectronicJournal.Формы.PrintTablesFormSelect.resources
 C:\Users\Nik\source\repos\ElectronicJournal\ElectronicJournal\obj\Debug\ElectronicJournal.Формы.Формы_для_добавления.AddUserForm.resources
+C:\Users\Nik\source\repos\ElectronicJournal\ElectronicJournal\bin\Debug\MaterialSkin.dll

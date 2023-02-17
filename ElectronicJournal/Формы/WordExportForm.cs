@@ -1,9 +1,10 @@
-﻿using System;
+﻿using MaterialSkin.Controls;
+using System;
 using System.Windows.Forms;
 
 namespace ElectronicJournal.Формы
 {
-    public partial class WordExportForm : Form
+    public partial class WordExportForm : MaterialForm
     {
         public string tableName { get; set; }
 
@@ -13,14 +14,15 @@ namespace ElectronicJournal.Формы
             StartPosition = FormStartPosition.CenterScreen;
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void button1_Click_1(object sender, EventArgs e)
         {
+            if (domainUpDown1.SelectedItem == null)
+            {
+                MessageBox.Show("Выберите таблицу");
+                return;
+            }
             tableName = domainUpDown1.SelectedItem.ToString();
             Close();
-        }
-
-        private void WordExportForm_Load(object sender, EventArgs e)
-        {
         }
     }
 }

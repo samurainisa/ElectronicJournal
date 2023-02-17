@@ -28,88 +28,84 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
+            this.button1 = new MaterialSkin.Controls.MaterialFlatButton();
+            this.textBox2 = new MaterialSkin.Controls.MaterialSingleLineTextField();
+            this.textBox3 = new MaterialSkin.Controls.MaterialSingleLineTextField();
+            this.textBox4 = new MaterialSkin.Controls.MaterialSingleLineTextField();
             this.SuspendLayout();
-            // 
-            // textBox2
-            // 
-            this.textBox2.Location = new System.Drawing.Point(92, 58);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(226, 20);
-            this.textBox2.TabIndex = 1;
-            // 
-            // textBox3
-            // 
-            this.textBox3.Location = new System.Drawing.Point(92, 115);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(226, 20);
-            this.textBox3.TabIndex = 2;
-            // 
-            // textBox4
-            // 
-            this.textBox4.Location = new System.Drawing.Point(92, 169);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(226, 20);
-            this.textBox4.TabIndex = 3;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(48, 61);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(38, 13);
-            this.label2.TabIndex = 5;
-            this.label2.Text = "Логин";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(41, 118);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(45, 13);
-            this.label3.TabIndex = 6;
-            this.label3.Text = "Пароль";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(35, 172);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(51, 13);
-            this.label4.TabIndex = 7;
-            this.label4.Text = "Уровень";
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(112, 220);
+            this.button1.AutoSize = true;
+            this.button1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.button1.Depth = 0;
+            this.button1.Location = new System.Drawing.Point(91, 239);
+            this.button1.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.button1.MouseState = MaterialSkin.MouseState.HOVER;
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(172, 40);
-            this.button1.TabIndex = 8;
-            this.button1.Text = "Добавить";
+            this.button1.Primary = false;
+            this.button1.Size = new System.Drawing.Size(196, 36);
+            this.button1.TabIndex = 9;
+            this.button1.Text = "Добавить пользователя";
             this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.button1.Click += new System.EventHandler(this.button1_Click_1);
+            // 
+            // textBox2
+            // 
+            this.textBox2.Depth = 0;
+            this.textBox2.Hint = "Логин";
+            this.textBox2.Location = new System.Drawing.Point(71, 78);
+            this.textBox2.MouseState = MaterialSkin.MouseState.HOVER;
+            this.textBox2.Name = "textBox2";
+            this.textBox2.PasswordChar = '\0';
+            this.textBox2.SelectedText = "";
+            this.textBox2.SelectionLength = 0;
+            this.textBox2.SelectionStart = 0;
+            this.textBox2.Size = new System.Drawing.Size(251, 23);
+            this.textBox2.TabIndex = 13;
+            this.textBox2.UseSystemPasswordChar = false;
+            // 
+            // textBox3
+            // 
+            this.textBox3.Depth = 0;
+            this.textBox3.Hint = "Пароль";
+            this.textBox3.Location = new System.Drawing.Point(71, 135);
+            this.textBox3.MouseState = MaterialSkin.MouseState.HOVER;
+            this.textBox3.Name = "textBox3";
+            this.textBox3.PasswordChar = '\0';
+            this.textBox3.SelectedText = "";
+            this.textBox3.SelectionLength = 0;
+            this.textBox3.SelectionStart = 0;
+            this.textBox3.Size = new System.Drawing.Size(251, 23);
+            this.textBox3.TabIndex = 14;
+            this.textBox3.UseSystemPasswordChar = false;
+            // 
+            // textBox4
+            // 
+            this.textBox4.Depth = 0;
+            this.textBox4.Hint = "Уровень";
+            this.textBox4.Location = new System.Drawing.Point(71, 188);
+            this.textBox4.MouseState = MaterialSkin.MouseState.HOVER;
+            this.textBox4.Name = "textBox4";
+            this.textBox4.PasswordChar = '\0';
+            this.textBox4.SelectedText = "";
+            this.textBox4.SelectionLength = 0;
+            this.textBox4.SelectionStart = 0;
+            this.textBox4.Size = new System.Drawing.Size(251, 23);
+            this.textBox4.TabIndex = 15;
+            this.textBox4.UseSystemPasswordChar = false;
             // 
             // AddUserForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(391, 290);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.label2);
             this.Controls.Add(this.textBox4);
             this.Controls.Add(this.textBox3);
             this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.button1);
             this.Name = "AddUserForm";
             this.Text = "Добавление пользователя";
-            this.Load += new System.EventHandler(this.AddUserForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -117,12 +113,9 @@
 
         #endregion
 
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.TextBox textBox4;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Button button1;
+        private MaterialSkin.Controls.MaterialFlatButton button1;
+        private MaterialSkin.Controls.MaterialSingleLineTextField textBox2;
+        private MaterialSkin.Controls.MaterialSingleLineTextField textBox3;
+        private MaterialSkin.Controls.MaterialSingleLineTextField textBox4;
     }
 }

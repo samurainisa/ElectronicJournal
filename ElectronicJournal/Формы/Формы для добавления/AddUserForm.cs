@@ -4,18 +4,18 @@ using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using System.Windows.Forms;
+using MaterialSkin.Controls;
 
 namespace ElectronicJournal.Формы.Формы_для_добавления
 {
-    public partial class AddUserForm : Form
+    public partial class AddUserForm : MaterialForm 
     {
         public AddUserForm()
         {
             InitializeComponent();
         }
         InstDBEntities1 db = new InstDBEntities1();
-
-        private void button1_Click(object sender, EventArgs e)
+        private void button1_Click_1(object sender, EventArgs e)
         {
             try
             {
@@ -60,11 +60,6 @@ namespace ElectronicJournal.Формы.Формы_для_добавления
             {
                 MessageBox.Show(exception.Message);
             }
-
-        }
-
-        private void AddUserForm_Load(object sender, EventArgs e)
-        {
 
         }
     }

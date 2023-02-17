@@ -51,9 +51,6 @@
             this.wordToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.выходToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.печатьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
-            this.saveFileDialog2 = new System.Windows.Forms.SaveFileDialog();
-            this.printDocument1 = new System.Drawing.Printing.PrintDocument();
             this.добавитьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.нарушениеToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.устранениенарушенийToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -63,6 +60,9 @@
             this.адресаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.обучениеперсоналаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.пользовательToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
+            this.saveFileDialog2 = new System.Windows.Forms.SaveFileDialog();
+            this.printDocument1 = new System.Drawing.Printing.PrintDocument();
             ((System.ComponentModel.ISupportInitialize)(this.violations)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -87,9 +87,9 @@
             // 
             this.violations.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.violations.Location = new System.Drawing.Point(0, 0);
-            this.violations.Margin = new System.Windows.Forms.Padding(4);
+            this.violations.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.violations.Name = "violations";
-            this.violations.Size = new System.Drawing.Size(940, 538);
+            this.violations.Size = new System.Drawing.Size(987, 572);
             this.violations.TabIndex = 0;
             // 
             // tabControl1
@@ -102,21 +102,21 @@
             this.tabControl1.Controls.Add(this.tabPage6);
             this.tabControl1.Controls.Add(this.tabPage7);
             this.tabControl1.Controls.Add(this.tabPage8);
-            this.tabControl1.Location = new System.Drawing.Point(90, 64);
-            this.tabControl1.Margin = new System.Windows.Forms.Padding(4);
+            this.tabControl1.Location = new System.Drawing.Point(75, 134);
+            this.tabControl1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(951, 570);
+            this.tabControl1.Size = new System.Drawing.Size(995, 606);
             this.tabControl1.TabIndex = 1;
             // 
             // tabPage1
             // 
             this.tabPage1.Controls.Add(this.violations);
-            this.tabPage1.Location = new System.Drawing.Point(4, 25);
-            this.tabPage1.Margin = new System.Windows.Forms.Padding(4);
+            this.tabPage1.Location = new System.Drawing.Point(4, 26);
+            this.tabPage1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(4);
-            this.tabPage1.Size = new System.Drawing.Size(943, 541);
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPage1.Size = new System.Drawing.Size(987, 576);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Нарушения";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -124,11 +124,11 @@
             // tabPage2
             // 
             this.tabPage2.Controls.Add(this.violations_resolution);
-            this.tabPage2.Location = new System.Drawing.Point(4, 25);
-            this.tabPage2.Margin = new System.Windows.Forms.Padding(4);
+            this.tabPage2.Location = new System.Drawing.Point(4, 26);
+            this.tabPage2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(4);
-            this.tabPage2.Size = new System.Drawing.Size(943, 541);
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPage2.Size = new System.Drawing.Size(987, 576);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "устранение_нарушений";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -137,18 +137,18 @@
             // 
             this.violations_resolution.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.violations_resolution.Location = new System.Drawing.Point(0, 0);
-            this.violations_resolution.Margin = new System.Windows.Forms.Padding(4);
+            this.violations_resolution.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.violations_resolution.Name = "violations_resolution";
-            this.violations_resolution.Size = new System.Drawing.Size(940, 538);
+            this.violations_resolution.Size = new System.Drawing.Size(987, 572);
             this.violations_resolution.TabIndex = 1;
             // 
             // tabPage3
             // 
             this.tabPage3.Controls.Add(this.employee_violatuion);
-            this.tabPage3.Location = new System.Drawing.Point(4, 25);
-            this.tabPage3.Margin = new System.Windows.Forms.Padding(4);
+            this.tabPage3.Location = new System.Drawing.Point(4, 26);
+            this.tabPage3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(943, 541);
+            this.tabPage3.Size = new System.Drawing.Size(987, 576);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "работник_нарушение";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -157,18 +157,18 @@
             // 
             this.employee_violatuion.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.employee_violatuion.Location = new System.Drawing.Point(0, 0);
-            this.employee_violatuion.Margin = new System.Windows.Forms.Padding(4);
+            this.employee_violatuion.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.employee_violatuion.Name = "employee_violatuion";
-            this.employee_violatuion.Size = new System.Drawing.Size(940, 538);
+            this.employee_violatuion.Size = new System.Drawing.Size(987, 572);
             this.employee_violatuion.TabIndex = 1;
             // 
             // tabPage4
             // 
             this.tabPage4.Controls.Add(this.employee);
-            this.tabPage4.Location = new System.Drawing.Point(4, 25);
-            this.tabPage4.Margin = new System.Windows.Forms.Padding(4);
+            this.tabPage4.Location = new System.Drawing.Point(4, 26);
+            this.tabPage4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Size = new System.Drawing.Size(943, 541);
+            this.tabPage4.Size = new System.Drawing.Size(987, 576);
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "работники";
             this.tabPage4.UseVisualStyleBackColor = true;
@@ -177,18 +177,18 @@
             // 
             this.employee.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.employee.Location = new System.Drawing.Point(0, 0);
-            this.employee.Margin = new System.Windows.Forms.Padding(4);
+            this.employee.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.employee.Name = "employee";
-            this.employee.Size = new System.Drawing.Size(940, 538);
+            this.employee.Size = new System.Drawing.Size(987, 572);
             this.employee.TabIndex = 1;
             // 
             // tabPage5
             // 
             this.tabPage5.Controls.Add(this.trainings);
             this.tabPage5.Location = new System.Drawing.Point(4, 25);
-            this.tabPage5.Margin = new System.Windows.Forms.Padding(4);
+            this.tabPage5.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tabPage5.Name = "tabPage5";
-            this.tabPage5.Size = new System.Drawing.Size(943, 541);
+            this.tabPage5.Size = new System.Drawing.Size(987, 577);
             this.tabPage5.TabIndex = 4;
             this.tabPage5.Text = "инструктажи";
             this.tabPage5.UseVisualStyleBackColor = true;
@@ -197,18 +197,18 @@
             // 
             this.trainings.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.trainings.Location = new System.Drawing.Point(0, 0);
-            this.trainings.Margin = new System.Windows.Forms.Padding(4);
+            this.trainings.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.trainings.Name = "trainings";
-            this.trainings.Size = new System.Drawing.Size(940, 538);
+            this.trainings.Size = new System.Drawing.Size(987, 572);
             this.trainings.TabIndex = 1;
             // 
             // tabPage6
             // 
             this.tabPage6.Controls.Add(this.addresses);
             this.tabPage6.Location = new System.Drawing.Point(4, 25);
-            this.tabPage6.Margin = new System.Windows.Forms.Padding(4);
+            this.tabPage6.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tabPage6.Name = "tabPage6";
-            this.tabPage6.Size = new System.Drawing.Size(943, 541);
+            this.tabPage6.Size = new System.Drawing.Size(987, 577);
             this.tabPage6.TabIndex = 5;
             this.tabPage6.Text = "адреса";
             this.tabPage6.UseVisualStyleBackColor = true;
@@ -217,18 +217,18 @@
             // 
             this.addresses.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.addresses.Location = new System.Drawing.Point(0, 0);
-            this.addresses.Margin = new System.Windows.Forms.Padding(4);
+            this.addresses.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.addresses.Name = "addresses";
-            this.addresses.Size = new System.Drawing.Size(940, 538);
+            this.addresses.Size = new System.Drawing.Size(987, 572);
             this.addresses.TabIndex = 1;
             // 
             // tabPage7
             // 
             this.tabPage7.Controls.Add(this.employee_training);
             this.tabPage7.Location = new System.Drawing.Point(4, 25);
-            this.tabPage7.Margin = new System.Windows.Forms.Padding(4);
+            this.tabPage7.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tabPage7.Name = "tabPage7";
-            this.tabPage7.Size = new System.Drawing.Size(943, 541);
+            this.tabPage7.Size = new System.Drawing.Size(987, 577);
             this.tabPage7.TabIndex = 6;
             this.tabPage7.Text = "обучение_персонала";
             this.tabPage7.UseVisualStyleBackColor = true;
@@ -237,18 +237,18 @@
             // 
             this.employee_training.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.employee_training.Location = new System.Drawing.Point(0, 0);
-            this.employee_training.Margin = new System.Windows.Forms.Padding(4);
+            this.employee_training.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.employee_training.Name = "employee_training";
-            this.employee_training.Size = new System.Drawing.Size(940, 538);
+            this.employee_training.Size = new System.Drawing.Size(987, 572);
             this.employee_training.TabIndex = 1;
             // 
             // tabPage8
             // 
             this.tabPage8.Controls.Add(this.users);
             this.tabPage8.Location = new System.Drawing.Point(4, 25);
-            this.tabPage8.Margin = new System.Windows.Forms.Padding(4);
+            this.tabPage8.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tabPage8.Name = "tabPage8";
-            this.tabPage8.Size = new System.Drawing.Size(943, 541);
+            this.tabPage8.Size = new System.Drawing.Size(987, 577);
             this.tabPage8.TabIndex = 7;
             this.tabPage8.Text = "пользователи(для админа)";
             this.tabPage8.UseVisualStyleBackColor = true;
@@ -257,9 +257,9 @@
             // 
             this.users.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.users.Location = new System.Drawing.Point(0, 0);
-            this.users.Margin = new System.Windows.Forms.Padding(4);
+            this.users.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.users.Name = "users";
-            this.users.Size = new System.Drawing.Size(940, 538);
+            this.users.Size = new System.Drawing.Size(987, 572);
             this.users.TabIndex = 1;
             // 
             // menuStrip1
@@ -271,9 +271,10 @@
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(1150, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(1185, 24);
             this.menuStrip1.TabIndex = 2;
             this.menuStrip1.Text = "menuStrip1";
+            this.menuStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.menuStrip1_ItemClicked);
             // 
             // файлToolStripMenuItem
             // 
@@ -380,16 +381,16 @@
             // 
             // MainForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1150, 711);
+            this.ClientSize = new System.Drawing.Size(1185, 840);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.menuStrip1);
-            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.MainMenuStrip = this.menuStrip1;
-            this.Margin = new System.Windows.Forms.Padding(4);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "MainForm";
-            this.Text = "MainForm";
+            this.Text = "Главная форма";
             this.Load += new System.EventHandler(this.MainForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.violations)).EndInit();
             this.tabControl1.ResumeLayout(false);

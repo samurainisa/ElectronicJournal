@@ -9,71 +9,90 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using MaterialSkin.Controls;
 
 namespace ElectronicJournal.Формы
 {
-    public partial class AuthForm : Form
+    public partial class AuthForm : MaterialForm
     {
         public AuthForm()
         {
             InitializeComponent();
         }
+
         Database Database = new Database();
 
-        private void button1_Click(object sender, EventArgs e)
+        private void button1_Click_1(object sender, EventArgs e)
         {
-            var login = textBox1.Text;
-            var password = textBox2.Text;
-
-            using (SHA256 hash = SHA256.Create())
+            try
             {
-                byte[] passwordHash = hash.ComputeHash(Encoding.UTF8.GetBytes(password));
-                string hashedPassword = BitConverter.ToString(passwordHash).Replace("-", "");
+                var login = textBox1.Text;
+                var password = textBox2.Text;
 
-                SqlCommand command = new SqlCommand("SELECT access_level FROM USERS WHERE username = @username AND password = @password", Database.GetConnection());
-
-                command.Parameters.AddWithValue("@username", login);
-                command.Parameters.AddWithValue("@password", hashedPassword);
-
-                using (SqlConnection connection = Database.GetConnection())
+                if (login == "" || password == "")
                 {
-                    connection.Open();
-                    SqlDataReader reader = command.ExecuteReader();
+                    MessageBox.Show("Заполните все поля");
+                    return;
+                }
 
-                    if (reader.Read())
+                using (SHA256 hash = SHA256.Create())
+                {
+                    byte[] passwordHash = hash.ComputeHash(Encoding.UTF8.GetBytes(password));
+                    string hashedPassword = BitConverter.ToString(passwordHash).Replace("-", "");
+
+                    SqlCommand command =
+                        new SqlCommand(
+                            "SELECT access_level FROM USERS WHERE username = @username AND password = @password",
+                            Database.GetConnection());
+
+                    command.Parameters.AddWithValue("@username", login);
+                    command.Parameters.AddWithValue("@password", hashedPassword);
+
+                    using (SqlConnection connection = Database.GetConnection())
                     {
-                        int accessLevel = reader.GetInt32(0);
+                        connection.Open();
+                        SqlDataReader reader = command.ExecuteReader();
 
-                        if (accessLevel == 1)
+                        if (reader.Read())
                         {
-                            MessageBox.Show("You have successfully logged in as a user with access level 1");
-                            MainForm mainForm = new MainForm();
-                            mainForm.Show();
-                            Hide();
+                            int accessLevel = reader.GetInt32(0);
 
+                            if (accessLevel == 1)
+                            {
+                                MessageBox.Show("Успешно, у вас 1 уровень доступа");
+                                MainForm mainForm = new MainForm();
+                                mainForm.Show();
+                                Hide();
+                            }
+                            else if (accessLevel == 2)
+                            {
+                                MessageBox.Show("Успешно, у вас 2 уровень доступа");
+                                MainForm mainForm = new MainForm();
+                                mainForm.Show();
+                                Hide();
+                            }
+                            else
+                            {
+                                MessageBox.Show("Неверен пароль или логин");
+                                connection.Close();
+                                Dispose();
+                                return;
+                            }
                         }
-                        else if (accessLevel == 2)
-                        {
-                            MessageBox.Show("You have successfully logged in as a user with access level 2");
-                            MainForm mainForm = new MainForm();
-                            mainForm.Show();
-                            Hide();
-                        }
-                        else
-                        {
-                            MessageBox.Show("You have successfully logged in, but your access level is not recognized");
-                            MainForm mainForm = new MainForm();
-                            mainForm.Show();
-                            Hide();
-                        }
-                    }
-                    else
-                    {
-                        MessageBox.Show("Login failed");
                     }
                 }
             }
+            catch (Exception exception)
+            {
+                MessageBox.Show(exception.Message);
+            }
+        }
 
+        private void label4_Click_1(object sender, EventArgs e)
+        {
+            RegistrationForm regform = new RegistrationForm();
+            regform.Show();
+            this.Hide();
         }
     }
 }

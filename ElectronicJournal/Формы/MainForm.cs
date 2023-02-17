@@ -6,10 +6,11 @@ using System.Linq;
 using System.Windows.Forms;
 using ElectronicJournal.Формы.Формы_для_добавления;
 using Excel = Microsoft.Office.Interop.Excel;
+using MaterialSkin.Controls;
 
 namespace ElectronicJournal.Формы
 {
-    public partial class MainForm : Form
+    public partial class MainForm : MaterialForm
     {
         InstDBEntities1 db = new InstDBEntities1();
 
@@ -68,7 +69,14 @@ namespace ElectronicJournal.Формы
 
         private void выходToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            this.Close();
+            //вы уверены что хотите выйти?
+            DialogResult result = MessageBox.Show("Вы уверены что хотите выйти?", "Выход", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result == DialogResult.Yes)
+            {
+                AuthForm authForm = new AuthForm();
+                authForm.Show();
+                this.Close();
+            }
         }
 
         private void excelToolStripMenuItem_Click(object sender, EventArgs e)
@@ -359,6 +367,11 @@ namespace ElectronicJournal.Формы
         {
             AddUserForm userform = new AddUserForm();
             userform.Show();
+
+        }
+
+        private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
 
         }
     }
