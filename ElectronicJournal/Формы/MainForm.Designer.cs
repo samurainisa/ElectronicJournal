@@ -257,13 +257,16 @@
             // 
             // users
             // 
+            this.users.AllowUserToAddRows = false;
             this.users.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.users.Location = new System.Drawing.Point(0, 0);
             this.users.Margin = new System.Windows.Forms.Padding(4);
             this.users.Name = "users";
+            this.users.ReadOnly = true;
             this.users.Size = new System.Drawing.Size(987, 572);
             this.users.TabIndex = 1;
             this.users.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.users_CellClick);
+            this.users.RowEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.users_RowEnter);
             this.users.Click += new System.EventHandler(this.users_Click);
             // 
             // menuStrip1

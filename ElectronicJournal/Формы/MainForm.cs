@@ -9,6 +9,9 @@ using ElectronicJournal.Формы.Формы_для_добавления;
 using Excel = Microsoft.Office.Interop.Excel;
 using MaterialSkin.Controls;
 using System.Data;
+using System.Data.Entity;
+using System.Net;
+using System.Collections.Generic;
 
 namespace ElectronicJournal.Формы
 {
@@ -385,43 +388,176 @@ namespace ElectronicJournal.Формы
             await PreloadFromDatabaseAsync();
         }
 
-        private void materialFlatButton1_Click(object sender, EventArgs e)
+        private async void materialFlatButton1_Click(object sender, EventArgs e)
         {
+            if ((users.CurrentRow != null && users.CurrentRow.Selected) && users.SelectedRows.Count == 1)
+            {
+                int rowIndex = users.CurrentRow.Index;
+                int id = (int)users.Rows[rowIndex].Cells[0].Value;
+                DeleteRecord<USERS>(id);
+                // Обновляем источник данных для DataGridView
+                users.DataSource = await GetTableAsync<USERS>();
+                MessageBox.Show("Запись удалена");
+            }
 
+            if ((employee_training.CurrentRow != null && employee_training.CurrentRow.Selected) &&
+                employee_training.SelectedRows.Count == 1)
+            {
+                int rowIndex = employee_training.CurrentRow.Index;
+                int id = (int)employee_training.Rows[rowIndex].Cells[0].Value;
+                DeleteRecord<employee_training>(id);
+                // Обновляем источник данных для DataGridView
+                employee_training.DataSource = await GetTableAsync<employee_training>();
+                MessageBox.Show("Запись удалена");
+            }
+
+            if ((violations.CurrentRow != null && violations.CurrentRow.Selected) &&
+                violations.SelectedRows.Count == 1)
+            {
+                int rowIndex = violations.CurrentRow.Index;
+                int id = (int)violations.Rows[rowIndex].Cells[0].Value;
+                DeleteRecord<violations>(id);
+                // Обновляем источник данных для DataGridView
+                violations.DataSource = await GetTableAsync<violations>();
+                MessageBox.Show("Запись удалена");
+            }
+
+            if ((violations_resolution.CurrentRow != null && violations_resolution.CurrentRow.Selected) &&
+                violations_resolution.SelectedRows.Count == 1)
+            {
+                int rowIndex = violations_resolution.CurrentRow.Index;
+                int id = (int)violations_resolution.Rows[rowIndex].Cells[0].Value;
+                DeleteRecord<violation_resolution>(id);
+                // Обновляем источник данных для DataGridView
+                violations_resolution.DataSource = await GetTableAsync<violation_resolution>();
+                MessageBox.Show("Запись удалена");
+            }
+
+            // employee_violatuion
+
+            if ((employee_violatuion.CurrentRow != null && employee_violatuion.CurrentRow.Selected) &&
+                employee_violatuion.SelectedRows.Count == 1)
+            {
+                int rowIndex = employee_violatuion.CurrentRow.Index;
+                int id = (int)employee_violatuion.Rows[rowIndex].Cells[0].Value;
+                DeleteRecord<employee_violation>(id);
+                // Обновляем источник данных для DataGridView
+                employee_violatuion.DataSource = await GetTableAsync<employee_violation>();
+                MessageBox.Show("Запись удалена");
+            }
+
+            //employee
+
+            if ((employee.CurrentRow != null && employee.CurrentRow.Selected) &&
+                employee.SelectedRows.Count == 1)
+            {
+                int rowIndex = employee.CurrentRow.Index;
+                int id = (int)employee.Rows[rowIndex].Cells[0].Value;
+                DeleteRecord<employees>(id);
+                // Обновляем источник данных для DataGridView
+                employee.DataSource = await GetTableAsync<AddEmployeesForm>();
+                MessageBox.Show("Запись удалена");
+            }
+
+            //trainings
+            if ((trainings.CurrentRow != null && trainings.CurrentRow.Selected) &&
+                trainings.SelectedRows.Count == 1)
+            {
+                int rowIndex = trainings.CurrentRow.Index;
+                int id = (int)trainings.Rows[rowIndex].Cells[0].Value;
+                DeleteRecord<trainings>(id);
+                // Обновляем источник данных для DataGridView
+                trainings.DataSource = await GetTableAsync<trainings>();
+                MessageBox.Show("Запись удалена");
+            }
+
+            // addresses
+
+            if ((addresses.CurrentRow != null && addresses.CurrentRow.Selected) &&
+                addresses.SelectedRows.Count == 1)
+            {
+                int rowIndex = addresses.CurrentRow.Index;
+                int id = (int)addresses.Rows[rowIndex].Cells[0].Value;
+                DeleteRecord<addresses>(id);
+                // Обновляем источник данных для DataGridView
+                addresses.DataSource = await GetTableAsync<addresses>();
+                MessageBox.Show("Запись удалена");
+            }
+        }
+
+        private async Task<BindingSource> GetTableAsync<T>() where T : class
+        {
+            var table = await Task.Run(() => db.Set<T>().ToList());
+            return new BindingSource(table, null);
+        }
+
+
+        private void DeleteRecord<T>(int id) where T : class
+        {
+            using (InstDBEntities1 db = new InstDBEntities1())
+            {
+                var entity = db.Set<T>().Find(id);
+                if (entity != null)
+                {
+                    db.Set<T>().Remove(entity);
+                    db.SaveChanges();
+                }
+            }
+        }
+        private async Task DeleteRowAsync<T>(DataGridView dgv, int id) where T : class
+        {
+            int rowIndex = dgv.CurrentRow.Index;
+            dgv.Rows.RemoveAt(rowIndex);
+            DeleteRecord<T>(id);
+            // Обновляем источник данных для DataGridView
+            dgv.DataSource = await GetTableAsync<T>();
+            MessageBox.Show("Запись удалена");
         }
 
         private void users_Click(object sender, EventArgs e)
         {
-
         }
 
         private void users_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            int selectedRowID = -1;
-            if (e.RowIndex >= 0 && e.RowIndex < users.Rows.Count)
-            {
-                DataGridViewRow selectedRow = users.Rows[e.RowIndex];
-                selectedRowID = (int)selectedRow.Cells["ID"].Value; // предполагается, что в таблице есть столбец с именем "ID"
-            }
+            // int selectedRowID = -1;
+            // if (e.RowIndex >= 0 && e.RowIndex < users.Rows.Count)
+            // {
+            //     DataGridViewRow selectedRow = users.Rows[e.RowIndex];
+            //     selectedRowID =
+            //         (int)selectedRow.Cells["ID"].Value; // предполагается, что в таблице есть столбец с именем "ID"
+            // }
+            //
+            // // Удаление строки из базы данных
+            // if (selectedRowID > 0)
+            // {
+            //     try
+            //     {
+            //         var rowToDelete =
+            //             db.USERS.Find(
+            //                 selectedRowID); // предполагается, что в базе данных есть таблица с именем "MyTable"
+            //         db.USERS.Remove(rowToDelete);
+            //         db.SaveChanges();
+            //     }
+            //     catch (Exception ex)
+            //     {
+            //         MessageBox.Show($"Не удалось удалить строку из базы данных. Ошибка: {ex.Message}", "Ошибка",
+            //             MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //         return;
+            //     }
+            //
+            //     // Обновление источника данных для DataGridView
+            //     users.DataSource = db.USERS.ToList();
+            // }
+        }
 
-            // Удаление строки из базы данных
-            if (selectedRowID > 0)
-            {
-                try
-                {
-                    var rowToDelete = db.USERS.Find(selectedRowID); // предполагается, что в базе данных есть таблица с именем "MyTable"
-                    db.USERS.Remove(rowToDelete);
-                    db.SaveChanges();
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show($"Не удалось удалить строку из базы данных. Ошибка: {ex.Message}", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
+        private void users_RowEnter(object sender, DataGridViewCellEventArgs e)
+        {
+            //// Получаем значение идентификатора из первой колонки выбранной строки
+            //int id = (int)users.Rows[e.RowIndex].Cells[0].Value;
 
-                // Обновление источника данных для DataGridView
-                users.DataSource = db.USERS.ToList();
-            }
+            //// Удаляем запись из базы данных по идентификатору
+            //DeleteRecord(id);
         }
     }
 }
