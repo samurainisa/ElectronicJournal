@@ -1,26 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Data.SqlClient;
-using System.Drawing;
+﻿using ElectronicJournal.Model;
+using MaterialSkin.Controls;
+using System;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using MaterialSkin.Controls;
 
 namespace ElectronicJournal.Формы
 {
     public partial class AuthForm : MaterialForm
     {
+        private InstDBEntities1 db = new InstDBEntities1();
+
         public AuthForm()
         {
             InitializeComponent();
         }
-
-        Database Database = new Database();
 
         private void button1_Click_1(object sender, EventArgs e)
         {
@@ -40,45 +35,34 @@ namespace ElectronicJournal.Формы
                     byte[] passwordHash = hash.ComputeHash(Encoding.UTF8.GetBytes(password));
                     string hashedPassword = BitConverter.ToString(passwordHash).Replace("-", "");
 
-                    SqlCommand command =
-                        new SqlCommand(
-                            "SELECT access_level FROM USERS WHERE username = @username AND password = @password",
-                            Database.GetConnection());
+                    var user = db.USERS.FirstOrDefault(u => u.username == login && u.password == hashedPassword);
 
-                    command.Parameters.AddWithValue("@username", login);
-                    command.Parameters.AddWithValue("@password", hashedPassword);
-
-                    using (SqlConnection connection = Database.GetConnection())
+                    if (user != null)
                     {
-                        connection.Open();
-                        SqlDataReader reader = command.ExecuteReader();
+                        int accessLevel = user.access_level;
 
-                        if (reader.Read())
+                        if (accessLevel == 1)
                         {
-                            int accessLevel = reader.GetInt32(0);
-
-                            if (accessLevel == 1)
-                            {
-                                MessageBox.Show("Успешно, у вас 1 уровень доступа");
-                                MainForm mainForm = new MainForm();
-                                mainForm.Show();
-                                Hide();
-                            }
-                            else if (accessLevel == 2)
-                            {
-                                MessageBox.Show("Успешно, у вас 2 уровень доступа");
-                                MainForm mainForm = new MainForm();
-                                mainForm.Show();
-                                Hide();
-                            }
-                            else
-                            {
-                                MessageBox.Show("Неверен пароль или логин");
-                                connection.Close();
-                                Dispose();
-                                return;
-                            }
+                            MessageBox.Show("Успешно, у вас 1 уровень доступа");
+                            MainForm mainForm = new MainForm();
+                            mainForm.Show();
+                            Hide();
                         }
+                        else if (accessLevel == 2)
+                        {
+                            MessageBox.Show("Успешно, у вас 2 уровень доступа");
+                            MainForm mainForm = new MainForm();
+                            mainForm.Show();
+                            Hide();
+                        }
+                        else
+                        {
+                            MessageBox.Show("Неверен пароль или логин");
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Неверен пароль или логин");
                     }
                 }
             }

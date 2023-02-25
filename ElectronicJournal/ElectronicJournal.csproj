@@ -76,6 +76,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Database.cs" />
+    <Compile Include="DatabaseService.cs" />
     <Compile Include="InstDBDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -211,6 +212,18 @@
     <Compile Include="Формы\Формы для добавления\AddViolenceForm.Designer.cs">
       <DependentUpon>AddViolenceForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Формы\Формы для редактирования\ChangeUserInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Формы\Формы для редактирования\ChangeUserInfo.Designer.cs">
+      <DependentUpon>ChangeUserInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Формы\Формы для редактирования\ChangeViolationInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Формы\Формы для редактирования\ChangeViolationInfo.Designer.cs">
+      <DependentUpon>ChangeViolationInfo.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -262,6 +275,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Формы\Формы для добавления\AddViolenceForm.resx">
       <DependentUpon>AddViolenceForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Формы\Формы для редактирования\ChangeUserInfo.resx">
+      <DependentUpon>ChangeUserInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Формы\Формы для редактирования\ChangeViolationInfo.resx">
+      <DependentUpon>ChangeViolationInfo.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="InstDBDataSet.xsc">
       <DependentUpon>InstDBDataSet.xsd</DependentUpon>

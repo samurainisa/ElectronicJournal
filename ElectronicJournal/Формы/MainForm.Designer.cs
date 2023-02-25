@@ -257,12 +257,10 @@
             // 
             // users
             // 
-            this.users.AllowUserToAddRows = false;
             this.users.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.users.Location = new System.Drawing.Point(0, 0);
             this.users.Margin = new System.Windows.Forms.Padding(4);
             this.users.Name = "users";
-            this.users.ReadOnly = true;
             this.users.Size = new System.Drawing.Size(987, 572);
             this.users.TabIndex = 1;
             this.users.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.users_CellClick);
@@ -421,6 +419,7 @@
             this.materialFlatButton2.TabIndex = 4;
             this.materialFlatButton2.Text = "Изменение";
             this.materialFlatButton2.UseVisualStyleBackColor = true;
+            this.materialFlatButton2.Click += new System.EventHandler(this.materialFlatButton2_Click);
             // 
             // MainForm
             // 
@@ -479,7 +478,7 @@
         private System.Windows.Forms.TabPage tabPage7;
         private System.Windows.Forms.DataGridView employee_training;
         private System.Windows.Forms.TabPage tabPage8;
-        private System.Windows.Forms.DataGridView users;
+        public System.Windows.Forms.DataGridView users;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem файлToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem excelToolStripMenuItem;

@@ -30,4 +30,5 @@ C:\Users\Nik\source\repos\ElectronicJournal\ElectronicJournal\obj\Debug\Electron
 C:\Users\Nik\source\repos\ElectronicJournal\ElectronicJournal\obj\Debug\ElectronicJournal.Формы.Формы_для_добавления.addEmployeeTrainingForm.resources
 C:\Users\Nik\source\repos\ElectronicJournal\ElectronicJournal\obj\Debug\ElectronicJournal.Формы.Формы_для_добавления.AddTrainingEmployeeForm.resources
 C:\Users\Nik\source\repos\ElectronicJournal\ElectronicJournal\obj\Debug\ElectronicJournal.Формы.Формы_для_добавления.AddEmployeesForm.resources
-C:\Users\Nik\source\repos\ElectronicJournal\ElectronicJournal\obj\Debug\ElectronicJournal.Формы.Формы_для_удаления.DeleteUserForm.resources
+C:\Users\Nik\source\repos\ElectronicJournal\ElectronicJournal\obj\Debug\ElectronicJournal.Формы.Формы_для_редактирования.ChangeViolationInfo.resources
+C:\Users\Nik\source\repos\ElectronicJournal\ElectronicJournal\obj\Debug\ElectronicJournal.Формы.Формы_для_редактирования.ChangeUserInfo.resources

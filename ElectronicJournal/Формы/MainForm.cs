@@ -12,12 +12,18 @@ using System.Data;
 using System.Data.Entity;
 using System.Net;
 using System.Collections.Generic;
+using ElectronicJournal.Формы.Формы_для_редактирования;
+using System.Data.Entity.Infrastructure;
+using System.Data.SqlClient;
+using ElectronicJournal.Формы;
 
 namespace ElectronicJournal.Формы
 {
     public partial class MainForm : MaterialForm
     {
         InstDBEntities1 db = new InstDBEntities1();
+        public List<USERS> Users { get; set; }
+
 
         public MainForm()
         {
@@ -488,9 +494,9 @@ namespace ElectronicJournal.Формы
         private async Task<BindingSource> GetTableAsync<T>() where T : class
         {
             var table = await Task.Run(() => db.Set<T>().ToList());
+
             return new BindingSource(table, null);
         }
-
 
         private void DeleteRecord<T>(int id) where T : class
         {
@@ -499,20 +505,41 @@ namespace ElectronicJournal.Формы
                 var entity = db.Set<T>().Find(id);
                 if (entity != null)
                 {
+                    if (entity is employees)
+                    {
+                        // Удалить все связанные записи из таблицы addresses
+                        var addresses = db.addresses.Where(a => a.employee_id == id);
+                        foreach (var address in addresses)
+                        {
+                            db.addresses.Remove(address);
+                        }
+                    }
+
                     db.Set<T>().Remove(entity);
-                    db.SaveChanges();
+                    try
+                    {
+                        db.SaveChanges();
+                    }
+                    catch (DbUpdateException ex)
+                    {
+                        if (ex.InnerException is SqlException sqlException && sqlException.Number == 547)
+                        {
+                            MessageBox.Show(
+                                "Невозможно удалить запись, так как она связана с другими записями в базе данных.");
+                        }
+                        else
+                        {
+                            MessageBox.Show("Ошибка удаления записи: " + ex.Message);
+                        }
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Запись не найдена в базе данных.");
                 }
             }
         }
-        private async Task DeleteRowAsync<T>(DataGridView dgv, int id) where T : class
-        {
-            int rowIndex = dgv.CurrentRow.Index;
-            dgv.Rows.RemoveAt(rowIndex);
-            DeleteRecord<T>(id);
-            // Обновляем источник данных для DataGridView
-            dgv.DataSource = await GetTableAsync<T>();
-            MessageBox.Show("Запись удалена");
-        }
+
 
         private void users_Click(object sender, EventArgs e)
         {
@@ -520,44 +547,111 @@ namespace ElectronicJournal.Формы
 
         private void users_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            // int selectedRowID = -1;
-            // if (e.RowIndex >= 0 && e.RowIndex < users.Rows.Count)
-            // {
-            //     DataGridViewRow selectedRow = users.Rows[e.RowIndex];
-            //     selectedRowID =
-            //         (int)selectedRow.Cells["ID"].Value; // предполагается, что в таблице есть столбец с именем "ID"
-            // }
-            //
-            // // Удаление строки из базы данных
-            // if (selectedRowID > 0)
-            // {
-            //     try
-            //     {
-            //         var rowToDelete =
-            //             db.USERS.Find(
-            //                 selectedRowID); // предполагается, что в базе данных есть таблица с именем "MyTable"
-            //         db.USERS.Remove(rowToDelete);
-            //         db.SaveChanges();
-            //     }
-            //     catch (Exception ex)
-            //     {
-            //         MessageBox.Show($"Не удалось удалить строку из базы данных. Ошибка: {ex.Message}", "Ошибка",
-            //             MessageBoxButtons.OK, MessageBoxIcon.Error);
-            //         return;
-            //     }
-            //
-            //     // Обновление источника данных для DataGridView
-            //     users.DataSource = db.USERS.ToList();
-            // }
         }
 
         private void users_RowEnter(object sender, DataGridViewCellEventArgs e)
         {
-            //// Получаем значение идентификатора из первой колонки выбранной строки
-            //int id = (int)users.Rows[e.RowIndex].Cells[0].Value;
+        }
 
-            //// Удаляем запись из базы данных по идентификатору
-            //DeleteRecord(id);
+        private async void materialFlatButton2_Click(object sender, EventArgs e)
+        {
+            if ((users.CurrentRow != null && users.CurrentRow.Selected) && users.SelectedRows.Count == 1)
+            {
+                //выбрать строку в таблице и данные из неё передать в форму редактирования и после редактирования обновить таблицу 
+                int rowIndex = users.CurrentRow.Index;
+                int id = (int)users.Rows[rowIndex].Cells[0].Value;
+                string username = (string)users.Rows[rowIndex].Cells[1].Value;
+                string password = (string)users.Rows[rowIndex].Cells[2].Value;
+                var access_level = Convert.ToInt32(users.Rows[rowIndex].Cells[3].Value);
+
+                USERS user = new USERS();
+                user.id = id;
+                user.username = username;
+                user.password = password;
+                user.access_level = Convert.ToInt32(access_level);
+                //
+                // ChangeUserInfo changeUserInfo = new ChangeUserInfo(user);
+                // DialogResult result = changeUserInfo.ShowDialog();
+                //
+                // if (result == DialogResult.OK)
+                // {
+                //     users.DataSource = await GetTableAsync<USERS>();
+                // }
+                ChangeUserInfo changeUserInfo = new ChangeUserInfo(user);
+                changeUserInfo.ShowDialog();
+
+                if (Users != null)
+                {
+                    users.DataSource = Users;
+                }
+
+            }
+
+            //violations
+            if ((violations.CurrentRow != null && violations.CurrentRow.Selected) &&
+                violations.SelectedRows.Count == 1)
+            {
+                //выбрать строку в таблице и данные из неё передать в форму редактирования и после редактирования обновить таблицу 
+                int rowIndex = violations.CurrentRow.Index;
+                int id = (int)violations.Rows[rowIndex].Cells[0].Value;
+                string description = (string)violations.Rows[rowIndex].Cells[1].Value;
+                var control_level = Convert.ToInt32(violations.Rows[rowIndex].Cells[2].Value);
+                var date = Convert.ToDateTime(violations.Rows[rowIndex].Cells[3].Value);
+
+                violations violation = new violations();
+                violation.id = id;
+                violation.description = description;
+                violation.control_level = Convert.ToInt32(control_level);
+                violation.due_date = Convert.ToDateTime(date);
+
+                ChangeViolationInfo changeViolationInfo = new ChangeViolationInfo(violation);
+                changeViolationInfo.ShowDialog();
+                violations.DataSource = await GetTableAsync<violations>();
+                MessageBox.Show("Запись изменена");
+                violations.Refresh();
+            }
+        }
+
+        private async void button1_Click(object sender, EventArgs e)
+        {
+            await PreloadFromDatabaseAsync();
+        }
+
+        // private void UpdateEmployee(employees updatedEmployee)
+        // {
+        //     UpdateRecord(updatedEmployee);
+        // }
+
+
+        private void UpdateRecord<T>(T updatedEntity) where T : class
+        {
+            try
+            {
+                using (var db = new InstDBEntities1())
+                {
+                    var entity = db.Entry(updatedEntity);
+                    if (entity.State == EntityState.Detached)
+                    {
+                        var set = db.Set<T>();
+                        T attachedEntity = set.Local.FirstOrDefault(e => db.Entry(e).Entity == updatedEntity);
+                        if (attachedEntity != null)
+                        {
+                            var attachedEntry = db.Entry(attachedEntity);
+                            attachedEntry.CurrentValues.SetValues(updatedEntity);
+                        }
+                        else
+                        {
+                            entity.State = EntityState.Modified;
+                        }
+                    }
+
+                    db.SaveChanges();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Произошла ошибка при обновлении записи: {ex.Message}");
+            }
         }
     }
 }

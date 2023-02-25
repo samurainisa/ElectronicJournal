@@ -8,29 +8,19 @@ namespace ElectronicJournal
 {
     public class Database
     {
-        SqlConnection connection;
+        private string connectionString;
 
         public Database()
         {
-            connection = new SqlConnection("Data Source=DESKTOP-3SM99MC;Initial Catalog=InstDB;Integrated Security=True");
+            connectionString = "Data Source=DESKTOP-3SM99MC;Initial Catalog=InstDB;Integrated Security=True";
         }
-        public void OpenConnection()
-        {
-            if (connection.State == System.Data.ConnectionState.Closed)
-            {
-                connection.Open();
-            }
-        }
-        public void CloseConnection()
-        {
-            if (connection.State == System.Data.ConnectionState.Open)
-            {
-                connection.Close();
-            }
-        }
+
         public SqlConnection GetConnection()
         {
+            SqlConnection connection = new SqlConnection(connectionString);
+            connection.Open();
             return connection;
         }
     }
+
 }
