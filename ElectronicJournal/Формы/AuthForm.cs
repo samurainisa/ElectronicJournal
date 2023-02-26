@@ -17,7 +17,7 @@ namespace ElectronicJournal.Формы
             InitializeComponent();
         }
 
-        private void button1_Click_1(object sender, EventArgs e)
+        private async void button1_Click_1(object sender, EventArgs e)
         {
             try
             {

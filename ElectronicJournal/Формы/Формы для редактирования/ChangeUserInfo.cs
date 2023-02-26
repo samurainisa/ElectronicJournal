@@ -12,8 +12,6 @@ namespace ElectronicJournal.Формы.Формы_для_редактирова�
     {
         public USERS usersdb { get; set; }
         public InstDBEntities1 db = new InstDBEntities1();
-        public List<USERS> Users { get; set; }
-
         public ChangeUserInfo(USERS users)
         {
             InitializeComponent();
@@ -50,7 +48,7 @@ namespace ElectronicJournal.Формы.Формы_для_редактирова�
             var updatedUsers = db.USERS.ToList();
 
             var mainForm = (MainForm)Application.OpenForms["MainForm"];
-            mainForm.Users = updatedUsers;
+            if (mainForm != null) mainForm.Users = updatedUsers;
         }
     }
 }

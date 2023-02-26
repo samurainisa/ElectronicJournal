@@ -9,7 +9,6 @@ using ElectronicJournal.Формы.Формы_для_добавления;
 using Excel = Microsoft.Office.Interop.Excel;
 using MaterialSkin.Controls;
 using System.Data;
-using System.Data.Entity;
 using System.Net;
 using System.Collections.Generic;
 using ElectronicJournal.Формы.Формы_для_редактирования;
@@ -23,6 +22,13 @@ namespace ElectronicJournal.Формы
     {
         InstDBEntities1 db = new InstDBEntities1();
         public List<USERS> Users { get; set; }
+        public List<violations> Violations { get; set; }
+        public List<violation_resolution> ViolationsResolution { get; set; }
+        public List<employee_violation> EmployeeViolations { get; set; }
+        public List<employees> Employees { get; set; }
+        public List<trainings> Trainings { get; set; }
+        public List<addresses> Addresses { get; set; }
+        public List<employee_training> EmployeeTrainings { get; set; }
 
 
         public MainForm()
@@ -557,7 +563,6 @@ namespace ElectronicJournal.Формы
         {
             if ((users.CurrentRow != null && users.CurrentRow.Selected) && users.SelectedRows.Count == 1)
             {
-                //выбрать строку в таблице и данные из неё передать в форму редактирования и после редактирования обновить таблицу 
                 int rowIndex = users.CurrentRow.Index;
                 int id = (int)users.Rows[rowIndex].Cells[0].Value;
                 string username = (string)users.Rows[rowIndex].Cells[1].Value;
@@ -569,14 +574,7 @@ namespace ElectronicJournal.Формы
                 user.username = username;
                 user.password = password;
                 user.access_level = Convert.ToInt32(access_level);
-                //
-                // ChangeUserInfo changeUserInfo = new ChangeUserInfo(user);
-                // DialogResult result = changeUserInfo.ShowDialog();
-                //
-                // if (result == DialogResult.OK)
-                // {
-                //     users.DataSource = await GetTableAsync<USERS>();
-                // }
+
                 ChangeUserInfo changeUserInfo = new ChangeUserInfo(user);
                 changeUserInfo.ShowDialog();
 
@@ -584,14 +582,12 @@ namespace ElectronicJournal.Формы
                 {
                     users.DataSource = Users;
                 }
-
             }
 
             //violations
             if ((violations.CurrentRow != null && violations.CurrentRow.Selected) &&
                 violations.SelectedRows.Count == 1)
             {
-                //выбрать строку в таблице и данные из неё передать в форму редактирования и после редактирования обновить таблицу 
                 int rowIndex = violations.CurrentRow.Index;
                 int id = (int)violations.Rows[rowIndex].Cells[0].Value;
                 string description = (string)violations.Rows[rowIndex].Cells[1].Value;
@@ -606,52 +602,99 @@ namespace ElectronicJournal.Формы
 
                 ChangeViolationInfo changeViolationInfo = new ChangeViolationInfo(violation);
                 changeViolationInfo.ShowDialog();
-                violations.DataSource = await GetTableAsync<violations>();
-                MessageBox.Show("Запись изменена");
-                violations.Refresh();
+
+                if (Violations != null)
+                {
+                    violations.DataSource = Violations;
+                }
+            }
+
+            //violations_resolution
+            if ((violations_resolution.CurrentRow != null && violations_resolution.CurrentRow.Selected) &&
+                violations_resolution.SelectedRows.Count == 1)
+            {
+                // Получаем данные из таблицы
+                int rowIndex = violations_resolution.CurrentRow.Index;
+                int id = (int)violations_resolution.Rows[rowIndex].Cells[0].Value;
+                int violation_id = (int)violations_resolution.Rows[rowIndex].Cells[1].Value;
+                string resolution = (string)violations_resolution.Rows[rowIndex].Cells[2].Value;
+                var date = Convert.ToDateTime(violations_resolution.Rows[rowIndex].Cells[3].Value);
+                var employee_code = Convert.ToInt32(violations_resolution.Rows[rowIndex].Cells[4].Value);
+
+                // Создаем экземпляр класса violation_resolution
+                var violation = new violation_resolution
+                {
+                    id = id,
+                    violation_id = violation_id,
+                    resolution = resolution,
+                    resolution_date = date,
+                    employee_code = employee_code
+                };
+
+                // Открываем форму редактирования
+                var changeViolationResolutionInfo = new ChangeViolationResolutionInfo(violation);
+                var result = changeViolationResolutionInfo.ShowDialog();
+
+                if (result == DialogResult.OK)
+                {
+                    // Получаем обновленные данные из формы
+                    var updatedViolation = changeViolationResolutionInfo.usersdb;
+
+                    // Находим в списке ViolationsResolution существующую сущность и обновляем ее значения
+                    if (ViolationsResolution != null && ViolationsResolution.Count > 0)
+                    {
+                        var existingViolation = ViolationsResolution.FirstOrDefault(v => v.id == updatedViolation.id);
+                        if (existingViolation != null)
+                        {
+                            // Обновляем существующую сущность
+                            existingViolation.violation_id = updatedViolation.violation_id;
+                            existingViolation.resolution = updatedViolation.resolution;
+                            existingViolation.resolution_date = updatedViolation.resolution_date;
+                            existingViolation.employee_code = updatedViolation.employee_code;
+                        }
+                        else
+                        {
+                            // Добавляем новую сущность
+                            ViolationsResolution.Add(updatedViolation);
+                        }
+                    }
+
+                    // Обновляем данные в таблице ViolationsResolution
+                    violations_resolution.DataSource = null;
+                    violations_resolution.DataSource = ViolationsResolution;
+                }
+            }
+
+            //employee_violatuion
+            if ((employee_violatuion.CurrentRow != null && employee_violatuion.CurrentRow.Selected) &&
+                employee_violatuion.SelectedRows.Count == 1)
+            {
+                int rowIndex = employee_violatuion.CurrentRow.Index;
+                int id = (int)employee_violatuion.Rows[rowIndex].Cells[0].Value;
+                int employee_code = (int)employee_violatuion.Rows[rowIndex].Cells[1].Value;
+                int violation_id = (int)employee_violatuion.Rows[rowIndex].Cells[2].Value;
+                var date = Convert.ToDateTime(employee_violatuion.Rows[rowIndex].Cells[3].Value);
+
+                employee_violation employeeViolation = new employee_violation();
+                employeeViolation.id = id;
+                employeeViolation.employee_id = employee_code;
+                employeeViolation.violation_id = violation_id;
+                employeeViolation.violation_date = date;
+
+                ChangeTrainingEmployeeForm changeEmployeeViolationInfo =
+                    new ChangeTrainingEmployeeForm(employeeViolation);
+                changeEmployeeViolationInfo.ShowDialog();
+
+                if (EmployeeViolations != null)
+                {
+                    employee_violatuion.DataSource = EmployeeViolations;
+                }
             }
         }
 
         private async void button1_Click(object sender, EventArgs e)
         {
             await PreloadFromDatabaseAsync();
-        }
-
-        // private void UpdateEmployee(employees updatedEmployee)
-        // {
-        //     UpdateRecord(updatedEmployee);
-        // }
-
-
-        private void UpdateRecord<T>(T updatedEntity) where T : class
-        {
-            try
-            {
-                using (var db = new InstDBEntities1())
-                {
-                    var entity = db.Entry(updatedEntity);
-                    if (entity.State == EntityState.Detached)
-                    {
-                        var set = db.Set<T>();
-                        T attachedEntity = set.Local.FirstOrDefault(e => db.Entry(e).Entity == updatedEntity);
-                        if (attachedEntity != null)
-                        {
-                            var attachedEntry = db.Entry(attachedEntity);
-                            attachedEntry.CurrentValues.SetValues(updatedEntity);
-                        }
-                        else
-                        {
-                            entity.State = EntityState.Modified;
-                        }
-                    }
-
-                    db.SaveChanges();
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Произошла ошибка при обновлении записи: {ex.Message}");
-            }
         }
     }
 }

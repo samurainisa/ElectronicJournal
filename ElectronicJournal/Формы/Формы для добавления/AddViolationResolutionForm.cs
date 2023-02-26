@@ -25,22 +25,18 @@ namespace ElectronicJournal.Формы.Формы_для_добавления
         private async void AddViolationResolutionForm_Load(object sender, EventArgs e)
         {
             var violations = await Task.Run(() => db.violations.ToList());
-            var resolutions = await Task.Run(() => db.violation_resolution.ToList());
             foreach (var violation in violations)
             {
                 comboBox1.Items.Add($"Id {violation.id} " + $"{violation.description}");
             }
-            foreach (var resolution in resolutions)
-            {
-                comboBox2.Items.Add($"{resolution.resolution}");
-            }
+
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
             try
             {
-                var resolution = comboBox2.SelectedItem.ToString();
+                var resolution = materialSingleLineTextField1.Text;
                 var violation = comboBox1.SelectedItem.ToString();
 
                 string[] parts = violation.Split(' ');
@@ -57,9 +53,10 @@ namespace ElectronicJournal.Формы.Формы_для_добавления
 
                 violation_resolution violationResolution = new violation_resolution();
                 violationResolution.resolution = resolution;
-                violationResolution.employee_code = Convert.ToInt32(empcode);
                 violationResolution.resolution_date = Convert.ToDateTime(resolution_date);
                 violationResolution.violation_id = violationId;
+
+                violationResolution.employee_code = Convert.ToInt32(empcode);
 
                 db.violation_resolution.Add(violationResolution);
                 db.SaveChanges();
