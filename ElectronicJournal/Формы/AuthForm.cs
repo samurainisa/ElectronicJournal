@@ -1,6 +1,7 @@
 ﻿using ElectronicJournal.Model;
 using MaterialSkin.Controls;
 using System;
+using System.Data.Entity;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
@@ -11,6 +12,8 @@ namespace ElectronicJournal.Формы
     public partial class AuthForm : MaterialForm
     {
         private InstDBEntities1 db = new InstDBEntities1();
+
+
 
         public AuthForm()
         {
@@ -35,7 +38,8 @@ namespace ElectronicJournal.Формы
                     byte[] passwordHash = hash.ComputeHash(Encoding.UTF8.GetBytes(password));
                     string hashedPassword = BitConverter.ToString(passwordHash).Replace("-", "");
 
-                    var user = db.USERS.FirstOrDefault(u => u.username == login && u.password == hashedPassword);
+                    var user = await db.USERS.FirstOrDefaultAsync(u => u.username == login && u.password == hashedPassword.ToUpper());
+
 
                     if (user != null)
                     {
@@ -71,6 +75,7 @@ namespace ElectronicJournal.Формы
                 MessageBox.Show(exception.Message);
             }
         }
+
 
         private void label4_Click_1(object sender, EventArgs e)
         {

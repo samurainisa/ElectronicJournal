@@ -15,6 +15,7 @@ using ElectronicJournal.Формы.Формы_для_редактировани�
 using System.Data.Entity.Infrastructure;
 using System.Data.SqlClient;
 using ElectronicJournal.Формы;
+using System.Data.Entity;
 
 namespace ElectronicJournal.Формы
 {
@@ -423,16 +424,42 @@ namespace ElectronicJournal.Формы
                 MessageBox.Show("Запись удалена");
             }
 
-            if ((violations.CurrentRow != null && violations.CurrentRow.Selected) &&
-                violations.SelectedRows.Count == 1)
+            if ((violations.CurrentRow != null && violations.CurrentRow.Selected) && violations.SelectedRows.Count == 1)
             {
                 int rowIndex = violations.CurrentRow.Index;
                 int id = (int)violations.Rows[rowIndex].Cells[0].Value;
-                DeleteRecord<violations>(id);
+
+                using (var db = new InstDBEntities1())
+                {
+                    var entity = db.violations.Find(id);
+                    if (entity != null)
+                    {
+                        using (var transaction = db.Database.BeginTransaction())
+                        {
+                            try
+                            {
+                                db.Entry(entity).State = EntityState.Deleted;
+                                db.SaveChanges();
+                                transaction.Commit();
+                                MessageBox.Show("Запись удалена");
+                            }
+                            catch (Exception ex)
+                            {
+                                transaction.Rollback();
+                                MessageBox.Show($"Ошибка удаления записи: {ex.Message}");
+                            }
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Запись не найдена в базе данных.");
+                    }
+                }
+
                 // Обновляем источник данных для DataGridView
                 violations.DataSource = await GetTableAsync<violations>();
-                MessageBox.Show("Запись удалена");
             }
+
 
             if ((violations_resolution.CurrentRow != null && violations_resolution.CurrentRow.Selected) &&
                 violations_resolution.SelectedRows.Count == 1)
@@ -465,11 +492,59 @@ namespace ElectronicJournal.Формы
             {
                 int rowIndex = employee.CurrentRow.Index;
                 int id = (int)employee.Rows[rowIndex].Cells[0].Value;
-                DeleteRecord<employees>(id);
+
+                using (var db = new InstDBEntities1())
+                {
+                    var entity = db.employees.Find(id);
+                    if (entity != null)
+                    {
+                        using (var transaction = db.Database.BeginTransaction())
+                        {
+                            try
+                            {
+                                // Удалить связанные записи из связанных таблиц
+                                var addresses = db.addresses.Where(a => a.employee_id == id);
+                                foreach (var address in addresses)
+                                {
+                                    db.Entry(address).State = EntityState.Deleted;
+                                }
+
+                                var employeeViolations = db.employee_violation.Where(ev => ev.employee_id == id);
+                                foreach (var employeeViolation in employeeViolations)
+                                {
+                                    db.Entry(employeeViolation).State = EntityState.Deleted;
+                                }
+
+                                var employeeTrainings = db.employee_training.Where(et => et.employee_id == id);
+                                foreach (var employeeTraining in employeeTrainings)
+                                {
+                                    db.Entry(employeeTraining).State = EntityState.Deleted;
+                                }
+
+                                // Удалить запись из таблицы
+                                db.Entry(entity).State = EntityState.Deleted;
+                                db.SaveChanges();
+
+                                transaction.Commit();
+                                MessageBox.Show("Запись удалена");
+                            }
+                            catch (Exception ex)
+                            {
+                                transaction.Rollback();
+                                MessageBox.Show($"Ошибка удаления записи: {ex.Message}");
+                            }
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Запись не найдена в базе данных.");
+                    }
+                }
+
                 // Обновляем источник данных для DataGridView
-                employee.DataSource = await GetTableAsync<AddEmployeesForm>();
-                MessageBox.Show("Запись удалена");
+                employee.DataSource = await GetTableAsync<employees>();
             }
+
 
             //trainings
             if ((trainings.CurrentRow != null && trainings.CurrentRow.Selected) &&
@@ -506,36 +581,37 @@ namespace ElectronicJournal.Формы
 
         private void DeleteRecord<T>(int id) where T : class
         {
-            using (InstDBEntities1 db = new InstDBEntities1())
+            using (var db = new InstDBEntities1())
             {
                 var entity = db.Set<T>().Find(id);
                 if (entity != null)
                 {
-                    if (entity is employees)
+                    using (var transaction = db.Database.BeginTransaction())
                     {
-                        // Удалить все связанные записи из таблицы addresses
-                        var addresses = db.addresses.Where(a => a.employee_id == id);
-                        foreach (var address in addresses)
+                        try
                         {
-                            db.addresses.Remove(address);
-                        }
-                    }
+                            // Удалить связанные записи из связанных таблиц
+                            var properties = typeof(T).GetProperties()
+                                .Where(p => p.PropertyType.Name.Contains("ICollection"));
+                            foreach (var property in properties)
+                            {
+                                var relatedEntities = db.Entry(entity).Collection(property.Name).CurrentValue;
+                                foreach (var relatedEntity in (IEnumerable<object>)relatedEntities)
+                                {
+                                    db.Entry(relatedEntity).State = EntityState.Deleted;
+                                }
+                            }
 
-                    db.Set<T>().Remove(entity);
-                    try
-                    {
-                        db.SaveChanges();
-                    }
-                    catch (DbUpdateException ex)
-                    {
-                        if (ex.InnerException is SqlException sqlException && sqlException.Number == 547)
-                        {
-                            MessageBox.Show(
-                                "Невозможно удалить запись, так как она связана с другими записями в базе данных.");
+                            // Удалить запись из таблицы
+                            db.Set<T>().Remove(entity);
+                            db.SaveChanges();
+
+                            transaction.Commit();
                         }
-                        else
+                        catch (Exception ex)
                         {
-                            MessageBox.Show("Ошибка удаления записи: " + ex.Message);
+                            transaction.Rollback();
+                            MessageBox.Show($"Ошибка удаления записи: {ex.Message}");
                         }
                     }
                 }
@@ -546,20 +622,7 @@ namespace ElectronicJournal.Формы
             }
         }
 
-
-        private void users_Click(object sender, EventArgs e)
-        {
-        }
-
-        private void users_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-        }
-
-        private void users_RowEnter(object sender, DataGridViewCellEventArgs e)
-        {
-        }
-
-        private async void materialFlatButton2_Click(object sender, EventArgs e)
+        private void materialFlatButton2_Click(object sender, EventArgs e)
         {
             if ((users.CurrentRow != null && users.CurrentRow.Selected) && users.SelectedRows.Count == 1)
             {
@@ -690,11 +753,105 @@ namespace ElectronicJournal.Формы
                     employee_violatuion.DataSource = EmployeeViolations;
                 }
             }
-        }
 
-        private async void button1_Click(object sender, EventArgs e)
-        {
-            await PreloadFromDatabaseAsync();
+            //employee
+            if ((employee.CurrentRow != null && employee.CurrentRow.Selected) &&
+                employee.SelectedRows.Count == 1)
+            {
+                int rowIndex = this.employee.CurrentRow.Index;
+                int id = (int)this.employee.Rows[rowIndex].Cells[0].Value;
+                string name = (string)this.employee.Rows[rowIndex].Cells[1].Value;
+                string position = (string)this.employee.Rows[rowIndex].Cells[2].Value;
+
+                employees employee = new employees();
+                employee.id = id;
+                employee.name = name;
+                employee.position = position;
+
+                ChangeEmployeesInfo changeEmployeeInfo = new ChangeEmployeesInfo(employee);
+                changeEmployeeInfo.ShowDialog();
+
+                if (Employees != null)
+                {
+                    this.employee.DataSource = Employees;
+                }
+            }
+
+            //trainings
+            if ((trainings.CurrentRow != null && trainings.CurrentRow.Selected) &&
+                trainings.SelectedRows.Count == 1)
+            {
+                int rowIndex = trainings.CurrentRow.Index;
+                int id = (int)trainings.Rows[rowIndex].Cells[0].Value;
+                string name = (string)trainings.Rows[rowIndex].Cells[1].Value;
+                string description = (string)trainings.Rows[rowIndex].Cells[2].Value;
+
+                trainings training = new trainings();
+                training.id = id;
+                training.name = name;
+                training.description = description;
+
+                ChangeInstInfo changeTrainingInfo = new ChangeInstInfo(training);
+                changeTrainingInfo.ShowDialog();
+
+                if (Trainings != null)
+                {
+                    this.trainings.DataSource = Trainings;
+                }
+            }
+
+            //adresses
+            if ((addresses.CurrentRow != null && addresses.CurrentRow.Selected) &&
+                addresses.SelectedRows.Count == 1)
+            {
+                int rowIndex = addresses.CurrentRow.Index;
+                int id = (int)addresses.Rows[rowIndex].Cells[0].Value;
+                string adresss = (string)addresses.Rows[rowIndex].Cells[1].Value;
+                var emp_id = (int)addresses.Rows[rowIndex].Cells[2].Value;
+
+                addresses adress = new addresses();
+                adress.id = id;
+                adress.address = adresss;
+                adress.employee_id = emp_id;
+
+                ChangeAdressInfo changeAdressInfo = new ChangeAdressInfo(adress);
+                changeAdressInfo.ShowDialog();
+
+                if (Addresses != null)
+                {
+                    this.addresses.DataSource = Addresses;
+                }
+            }
+
+            //employee_training
+            if ((employee_training.CurrentRow != null && employee_training.CurrentRow.Selected) &&
+                employee_training.SelectedRows.Count == 1)
+            {
+                int rowIndex = employee_training.CurrentRow.Index;
+                int id = (int)employee_training.Rows[rowIndex].Cells[0].Value;
+                int employee_id = (int)employee_training.Rows[rowIndex].Cells[1].Value;
+                int training_id = (int)employee_training.Rows[rowIndex].Cells[2].Value;
+                var date = Convert.ToDateTime(employee_training.Rows[rowIndex].Cells[3].Value);
+                var empcode = Convert.ToInt32(employee_training.Rows[rowIndex].Cells[4].Value);
+
+
+                employee_training employeeTraining = new employee_training();
+                employeeTraining.id = id;
+                employeeTraining.employee_id = employee_id;
+                employeeTraining.training_id = training_id;
+                employeeTraining.completion_date = date;
+                employeeTraining.employee_code = empcode;
+
+
+                ChangeTrainingEmployeeInfo changeEmployeeTrainingInfo =
+                    new ChangeTrainingEmployeeInfo(employeeTraining);
+                changeEmployeeTrainingInfo.ShowDialog();
+
+                if (EmployeeTrainings != null)
+                {
+                    employee_training.DataSource = EmployeeTrainings;
+                }
+            }
         }
     }
 }

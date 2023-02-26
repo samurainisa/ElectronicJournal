@@ -14,7 +14,7 @@ namespace ElectronicJournal.Формы
             InitializeComponent();
             StartPosition = FormStartPosition.CenterScreen;
         }
-
+        
         Database Database = new Database();
 
         private void button1_Click_1(object sender, EventArgs e)
@@ -40,18 +40,17 @@ namespace ElectronicJournal.Формы
                 byte[] passwordHash = hash.ComputeHash(Encoding.UTF8.GetBytes(password));
                 string hashedPassword = BitConverter.ToString(passwordHash).Replace("-", "");
 
-                SqlCommand command =
-                    new SqlCommand(
-                        "INSERT INTO USERS (username, password, access_level) VALUES (@username, @password, @access_level)",
-                        Database.GetConnection());
-
-                command.Parameters.AddWithValue("@username", login);
-                command.Parameters.AddWithValue("@password", hashedPassword);
-                command.Parameters.AddWithValue("@access_level", access_level);
-
                 using (SqlConnection connection = Database.GetConnection())
                 {
-                    connection.Open();
+                    SqlCommand command =
+                        new SqlCommand(
+                            "INSERT INTO USERS (username, password, access_level) VALUES (@username, @password, @access_level)",
+                            connection);
+
+                    command.Parameters.AddWithValue("@username", login);
+                    command.Parameters.AddWithValue("@password", hashedPassword);
+                    command.Parameters.AddWithValue("@access_level", access_level);
+
                     int rowsAffected = command.ExecuteNonQuery();
 
                     if (rowsAffected > 0)

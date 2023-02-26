@@ -17,7 +17,6 @@ namespace ElectronicJournal.Формы.Формы_для_редактирова�
     {
         public employee_violation usersdb { get; set; }
         InstDBEntities1 db = new InstDBEntities1();
-
         public ChangeTrainingEmployeeForm(employee_violation empvio)
         {
             InitializeComponent();

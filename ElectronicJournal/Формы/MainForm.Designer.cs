@@ -263,9 +263,6 @@
             this.users.Name = "users";
             this.users.Size = new System.Drawing.Size(987, 572);
             this.users.TabIndex = 1;
-            this.users.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.users_CellClick);
-            this.users.RowEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.users_RowEnter);
-            this.users.Click += new System.EventHandler(this.users_Click);
             // 
             // menuStrip1
             // 

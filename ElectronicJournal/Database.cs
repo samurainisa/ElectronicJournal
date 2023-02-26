@@ -12,7 +12,7 @@ namespace ElectronicJournal
 
         public Database()
         {
-            connectionString = "Data Source=DESKTOP-3SM99MC;Initial Catalog=InstDB;Integrated Security=True";
+            connectionString = "Data Source=DESKTOP-3SM99MC;Initial Catalog=newDB;Integrated Security=True";
         }
 
         public SqlConnection GetConnection()

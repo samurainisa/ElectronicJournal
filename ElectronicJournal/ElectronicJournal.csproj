@@ -210,11 +210,35 @@
     <Compile Include="Формы\Формы для добавления\AddViolenceForm.Designer.cs">
       <DependentUpon>AddViolenceForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Формы\Формы для редактирования\ChangeAdressInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Формы\Формы для редактирования\ChangeAdressInfo.Designer.cs">
+      <DependentUpon>ChangeAdressInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Формы\Формы для редактирования\ChangeEmployeesInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Формы\Формы для редактирования\ChangeEmployeesInfo.Designer.cs">
+      <DependentUpon>ChangeEmployeesInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Формы\Формы для редактирования\ChangeInstInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Формы\Формы для редактирования\ChangeInstInfo.Designer.cs">
+      <DependentUpon>ChangeInstInfo.cs</DependentUpon>
+    </Compile>
     <Compile Include="Формы\Формы для редактирования\ChangeTrainingEmployeeForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Формы\Формы для редактирования\ChangeTrainingEmployeeForm.Designer.cs">
       <DependentUpon>ChangeTrainingEmployeeForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Формы\Формы для редактирования\ChangeTrainingEmployeeInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Формы\Формы для редактирования\ChangeTrainingEmployeeInfo.Designer.cs">
+      <DependentUpon>ChangeTrainingEmployeeInfo.cs</DependentUpon>
     </Compile>
     <Compile Include="Формы\Формы для редактирования\ChangeUserInfo.cs">
       <SubType>Form</SubType>
@@ -286,8 +310,20 @@
     <EmbeddedResource Include="Формы\Формы для добавления\AddViolenceForm.resx">
       <DependentUpon>AddViolenceForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Формы\Формы для редактирования\ChangeAdressInfo.resx">
+      <DependentUpon>ChangeAdressInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Формы\Формы для редактирования\ChangeEmployeesInfo.resx">
+      <DependentUpon>ChangeEmployeesInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Формы\Формы для редактирования\ChangeInstInfo.resx">
+      <DependentUpon>ChangeInstInfo.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Формы\Формы для редактирования\ChangeTrainingEmployeeForm.resx">
       <DependentUpon>ChangeTrainingEmployeeForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Формы\Формы для редактирования\ChangeTrainingEmployeeInfo.resx">
+      <DependentUpon>ChangeTrainingEmployeeInfo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Формы\Формы для редактирования\ChangeUserInfo.resx">
       <DependentUpon>ChangeUserInfo.cs</DependentUpon>
