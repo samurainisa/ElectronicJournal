@@ -152,7 +152,7 @@
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Size = new System.Drawing.Size(987, 576);
             this.tabPage3.TabIndex = 2;
-            this.tabPage3.Text = "Мероприятия";
+            this.tabPage3.Text = "Обучение персонала";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
             // employee_violatuion
@@ -232,7 +232,7 @@
             this.tabPage7.Name = "tabPage7";
             this.tabPage7.Size = new System.Drawing.Size(987, 576);
             this.tabPage7.TabIndex = 6;
-            this.tabPage7.Text = "Обучение_персонала";
+            this.tabPage7.Text = "Мероприятия";
             this.tabPage7.UseVisualStyleBackColor = true;
             // 
             // employee_training
@@ -463,17 +463,16 @@
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;
-        private System.Windows.Forms.DataGridView violations_resolution;
         private System.Windows.Forms.TabPage tabPage3;
-        private System.Windows.Forms.DataGridView employee_violatuion;
+        public System.Windows.Forms.DataGridView employee_violatuion;
         private System.Windows.Forms.TabPage tabPage4;
-        private System.Windows.Forms.DataGridView employee;
+        public System.Windows.Forms.DataGridView employee;
         private System.Windows.Forms.TabPage tabPage5;
-        private System.Windows.Forms.DataGridView trainings;
+        public System.Windows.Forms.DataGridView trainings;
         private System.Windows.Forms.TabPage tabPage6;
-        private System.Windows.Forms.DataGridView addresses;
+        internal System.Windows.Forms.DataGridView addresses;
         private System.Windows.Forms.TabPage tabPage7;
-        private System.Windows.Forms.DataGridView employee_training;
+        public System.Windows.Forms.DataGridView employee_training;
         private System.Windows.Forms.TabPage tabPage8;
         public System.Windows.Forms.DataGridView users;
         private System.Windows.Forms.MenuStrip menuStrip1;
@@ -496,5 +495,6 @@
         private System.Windows.Forms.ToolStripMenuItem пользовательToolStripMenuItem;
         private MaterialSkin.Controls.MaterialFlatButton materialFlatButton1;
         private MaterialSkin.Controls.MaterialFlatButton materialFlatButton2;
+        public System.Windows.Forms.DataGridView violations_resolution;
     }
 }

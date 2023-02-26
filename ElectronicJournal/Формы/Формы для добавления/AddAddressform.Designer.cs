@@ -84,6 +84,7 @@
             this.Name = "AddAddressform";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Добавление адреса";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.AddAddressform_FormClosed);
             this.Load += new System.EventHandler(this.AddAddressform_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

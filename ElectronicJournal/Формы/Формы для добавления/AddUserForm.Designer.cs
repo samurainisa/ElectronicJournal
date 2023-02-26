@@ -64,7 +64,6 @@
             this.textBox2.Size = new System.Drawing.Size(251, 23);
             this.textBox2.TabIndex = 13;
             this.textBox2.UseSystemPasswordChar = false;
-            this.textBox2.Click += new System.EventHandler(this.textBox2_Click);
             // 
             // textBox3
             // 
@@ -80,7 +79,6 @@
             this.textBox3.Size = new System.Drawing.Size(251, 23);
             this.textBox3.TabIndex = 14;
             this.textBox3.UseSystemPasswordChar = false;
-            this.textBox3.Click += new System.EventHandler(this.textBox3_Click);
             // 
             // textBox4
             // 
@@ -96,7 +94,6 @@
             this.textBox4.Size = new System.Drawing.Size(251, 23);
             this.textBox4.TabIndex = 15;
             this.textBox4.UseSystemPasswordChar = false;
-            this.textBox4.Click += new System.EventHandler(this.textBox4_Click);
             // 
             // AddUserForm
             // 
@@ -109,6 +106,8 @@
             this.Controls.Add(this.button1);
             this.Name = "AddUserForm";
             this.Text = "Добавление пользователя";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.AddUserForm_FormClosed);
+            this.Load += new System.EventHandler(this.AddUserForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

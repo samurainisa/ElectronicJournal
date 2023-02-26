@@ -80,7 +80,6 @@ namespace ElectronicJournal.Формы
             this.textBox2.SelectionStart = 0;
             this.textBox2.Size = new System.Drawing.Size(283, 23);
             this.textBox2.TabIndex = 22;
-            this.textBox2.Text = "daun";
             this.textBox2.UseSystemPasswordChar = false;
             // 
             // textBox1
@@ -96,7 +95,6 @@ namespace ElectronicJournal.Формы
             this.textBox1.SelectionStart = 0;
             this.textBox1.Size = new System.Drawing.Size(283, 23);
             this.textBox1.TabIndex = 21;
-            this.textBox1.Text = "penis";
             this.textBox1.UseSystemPasswordChar = false;
             // 
             // AuthForm

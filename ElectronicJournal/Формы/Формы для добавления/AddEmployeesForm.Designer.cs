@@ -90,6 +90,7 @@
             this.Name = "AddEmployeesForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Добавление сотрудника";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.AddEmployeesForm_FormClosed);
             this.Load += new System.EventHandler(this.AddEmployeesForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

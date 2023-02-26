@@ -110,6 +110,7 @@
             this.Name = "AddInstructForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Добавление инструктажа";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.AddInstructForm_FormClosed);
             this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();

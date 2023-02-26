@@ -123,6 +123,7 @@
             this.Name = "AddTrainingEmployeeForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Добавление обучения сотрудников";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.AddTrainingEmployeeForm_FormClosed);
             this.Load += new System.EventHandler(this.AddTrainingEmployeeForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

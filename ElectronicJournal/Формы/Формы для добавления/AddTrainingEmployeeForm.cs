@@ -73,5 +73,14 @@ namespace ElectronicJournal.Формы.Формы_для_добавления
                 MessageBox.Show(exception.Message);
             }
         }
+
+        public void AddTrainingEmployeeForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            var form1 = Application.OpenForms.Cast<Form>().FirstOrDefault(x => x is MainForm) as MainForm;
+            if (form1 != null)
+            {
+                form1.employee_violatuion.DataSource = db.employee_violation.ToList();
+            }
+        }
     }
 }

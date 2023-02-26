@@ -22,6 +22,11 @@ namespace ElectronicJournal.Формы
     public partial class MainForm : MaterialForm
     {
         InstDBEntities1 db = new InstDBEntities1();
+
+        private FormClosedEventHandler AddViolenceForm_FormClosed;
+        //для других так же создать переменные
+
+
         public List<USERS> Users { get; set; }
         public List<violations> Violations { get; set; }
         public List<violation_resolution> ViolationsResolution { get; set; }
@@ -348,53 +353,83 @@ namespace ElectronicJournal.Формы
             }
         }
 
-        private void пользовательToolStripMenuItem_Click(object sender, EventArgs e)
+        private async void нарушениеToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AddViolenceForm violenceform = new AddViolenceForm();
+            AddViolenceForm_FormClosed = violenceform.AddViolenceForm_FormClosed;
+            violenceform.FormClosed += AddViolenceForm_FormClosed;
+            violenceform.Show();
+        }
+        public FormClosedEventHandler AddUserForm_FormClosed { get; set; }
+
+        private async void пользовательToolStripMenuItem_Click(object sender, EventArgs e)
         {
             AddUserForm userform = new AddUserForm();
+            AddUserForm_FormClosed = userform.AddUserForm_FormClosed;
+            userform.FormClosed += AddUserForm_FormClosed;
             userform.Show();
         }
 
-        private void нарушениеToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            AddViolenceForm violenceform = new AddViolenceForm();
-            violenceform.Show();
-        }
 
-        private void работникиToolStripMenuItem_Click(object sender, EventArgs e)
+        private async void работникиToolStripMenuItem_Click(object sender, EventArgs e)
         {
             AddEmployeesForm employeesform = new AddEmployeesForm();
+            AddEmployeesForm_FormClosed = employeesform.AddEmployeesForm_FormClosed;
+            employeesform.FormClosed += AddEmployeesForm_FormClosed;
             employeesform.Show();
         }
 
-        private void адресаToolStripMenuItem_Click(object sender, EventArgs e)
+        public FormClosedEventHandler AddEmployeesForm_FormClosed { get; set; }
+
+        private async void адресаToolStripMenuItem_Click(object sender, EventArgs e)
         {
             AddAddressform frm = new AddAddressform();
+            AddAddressForm_FormClosed = frm.AddAddressform_FormClosed;
+            frm.FormClosed += AddAddressForm_FormClosed;
             frm.Show();
         }
 
-        private void инструктажиToolStripMenuItem_Click(object sender, EventArgs e)
+        public FormClosedEventHandler AddAddressForm_FormClosed { get; set; }
+
+        private async void инструктажиToolStripMenuItem_Click(object sender, EventArgs e)
         {
             AddInstructForm frm = new AddInstructForm();
+            AddInstructForm_FormClosed = frm.AddInstructForm_FormClosed;
+            frm.FormClosed += AddInstructForm_FormClosed;
             frm.Show();
         }
 
-        private void устранениенарушенийToolStripMenuItem_Click(object sender, EventArgs e)
+        public FormClosedEventHandler AddInstructForm_FormClosed { get; set; }
+
+        private async void устранениенарушенийToolStripMenuItem_Click(object sender, EventArgs e)
         {
             AddViolationResolutionForm frm = new AddViolationResolutionForm();
+            AddViolationResolutionForm_FormClosed = frm.AddViolationResolutionForm_FormClosed;
+            frm.FormClosed += AddViolationResolutionForm_FormClosed;
             frm.Show();
         }
+
+        public FormClosedEventHandler AddViolationResolutionForm_FormClosed { get; set; }
 
         private void работникнарушениеToolStripMenuItem_Click(object sender, EventArgs e)
         {
             addEmployeeTrainingForm frm = new addEmployeeTrainingForm();
+            addEmployeeTrainingForm_FormClosed = frm.addEmployeeTrainingForm_FormClosed;
+            frm.FormClosed += addEmployeeTrainingForm_FormClosed;
             frm.Show();
         }
 
-        private void обучениеперсоналаToolStripMenuItem_Click(object sender, EventArgs e)
+        public FormClosedEventHandler addEmployeeTrainingForm_FormClosed { get; set; }
+
+        private async void обучениеперсоналаToolStripMenuItem_Click(object sender, EventArgs e)
         {
             AddTrainingEmployeeForm frm = new AddTrainingEmployeeForm();
+            AddTrainingEmployeeForm_FormClosed = frm.AddTrainingEmployeeForm_FormClosed;
+            frm.FormClosed += AddTrainingEmployeeForm_FormClosed;
             frm.Show();
         }
+
+        public FormClosedEventHandler AddTrainingEmployeeForm_FormClosed { get; set; }
 
         private async void MainForm_Load(object sender, EventArgs e)
         {

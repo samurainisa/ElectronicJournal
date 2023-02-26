@@ -49,5 +49,15 @@ namespace ElectronicJournal.Формы.Формы_для_добавления
                 MessageBox.Show(exception.Message);
             }
         }
+
+        public void AddInstructForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            var form1 = Application.OpenForms.Cast<Form>().FirstOrDefault(x => x is MainForm) as MainForm;
+            if (form1 != null)
+            {
+                form1.trainings.DataSource = db.trainings.ToList();
+            }
+        }
+
     }
 }

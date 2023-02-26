@@ -127,6 +127,7 @@
             this.Name = "AddViolenceForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Добавление нарушения";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.AddViolenceForm_FormClosed);
             this.Load += new System.EventHandler(this.AddViolenceForm_Load);
             this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);

@@ -50,7 +50,6 @@
             this.textBox4.Size = new System.Drawing.Size(251, 23);
             this.textBox4.TabIndex = 19;
             this.textBox4.UseSystemPasswordChar = false;
-            this.textBox4.Click += new System.EventHandler(this.textBox4_Click);
             // 
             // textBox3
             // 
@@ -66,7 +65,6 @@
             this.textBox3.Size = new System.Drawing.Size(251, 23);
             this.textBox3.TabIndex = 18;
             this.textBox3.UseSystemPasswordChar = false;
-            this.textBox3.Click += new System.EventHandler(this.textBox3_Click);
             // 
             // button1
             // 
@@ -91,7 +89,6 @@
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(251, 21);
             this.comboBox1.TabIndex = 21;
-            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
             // materialLabel1
             // 
@@ -105,7 +102,6 @@
             this.materialLabel1.Size = new System.Drawing.Size(151, 19);
             this.materialLabel1.TabIndex = 22;
             this.materialLabel1.Text = "Выберите проблему";
-            this.materialLabel1.Click += new System.EventHandler(this.materialLabel1_Click);
             // 
             // materialSingleLineTextField1
             // 
@@ -136,6 +132,7 @@
             this.Name = "AddViolationResolutionForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Добавление решения ";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.AddViolationResolutionForm_FormClosed);
             this.Load += new System.EventHandler(this.AddViolationResolutionForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

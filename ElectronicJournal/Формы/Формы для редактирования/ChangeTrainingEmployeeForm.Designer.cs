@@ -103,9 +103,9 @@
             this.button1.MouseState = MaterialSkin.MouseState.HOVER;
             this.button1.Name = "button1";
             this.button1.Primary = false;
-            this.button1.Size = new System.Drawing.Size(190, 36);
+            this.button1.Size = new System.Drawing.Size(161, 36);
             this.button1.TabIndex = 32;
-            this.button1.Text = "Изменить мероприятие";
+            this.button1.Text = "Изменить обучение";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 

@@ -69,34 +69,14 @@ namespace ElectronicJournal.Формы.Формы_для_добавления
             }
         }
 
-        private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
+        public void AddViolationResolutionForm_FormClosed(object sender, FormClosedEventArgs e)
         {
-
-        }
-
-        private void materialLabel1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox4_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox3_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void materialLabel2_Click(object sender, EventArgs e)
-        {
-
+            // Обновление данных в DataGridView
+            var form1 = Application.OpenForms.Cast<Form>().FirstOrDefault(x => x is MainForm) as MainForm;
+            if (form1 != null)
+            {
+                form1.violations_resolution.DataSource = db.violation_resolution.ToList();
+            }
         }
     }
 }

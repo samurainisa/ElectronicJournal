@@ -24,14 +24,14 @@ namespace ElectronicJournal.Формы.Формы_для_добавления
                 var password = textBox3.Text;
                 var access_level = textBox4.Text;
 
-                //add user to database using entity framework
+
                 USERS user = new USERS();
                 user.id = id;
                 user.username = login;
                 user.password = password;
                 user.access_level = Convert.ToInt32(access_level);
 
-                //password must be hashed by sha256
+
                 using (var sha256 = SHA256.Create())
                 {
                     var hashedBytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(password));
@@ -63,19 +63,19 @@ namespace ElectronicJournal.Формы.Формы_для_добавления
 
         }
 
-        private void textBox3_Click(object sender, EventArgs e)
+        public void AddUserForm_FormClosed(object sender, FormClosedEventArgs e)
         {
 
         }
 
-        private void textBox2_Click(object sender, EventArgs e)
+        private void AddUserForm_Load(object sender, EventArgs e)
         {
-
-        }
-
-        private void textBox4_Click(object sender, EventArgs e)
-        {
-
+            // Обновление данных в DataGridView
+            var form1 = Application.OpenForms.Cast<Form>().FirstOrDefault(x => x is MainForm) as MainForm;
+            if (form1 != null)
+            {
+                form1.users.DataSource = db.USERS.ToList();
+            }
         }
     }
 }
